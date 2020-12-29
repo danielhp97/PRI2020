@@ -1,0 +1,48 @@
+extends layout
+block content
+    .w3-card-4 
+      //Registar Recurso
+      header.w3-container.w3-teal
+        h3 Registar Recurso
+      .w3-container
+        form.w3-container(action='/recursos' method='POST')
+          label
+            b Tipo
+          input.w3-input.w3-border.w3-light-grey(type='text', name='Tipo', value='')
+
+          label
+            b Titulo
+          input.w3-input.w3-border.w3-light-grey(type='text',name='Titulo' , value='')
+
+          label
+            b Visiblidade
+          input.w3-input.w3-border.w3-light-grey(type='text', name='Visiblidade', value='')
+          input.w3-btn.w3-blue-grey(type='submit' value='Registar')
+      
+      hr
+      //Lista de Recursos
+      header.w3-container.w3-teal
+        h3 Lista de Recursos 
+      if lista.length > 0
+        .w3-container
+          table(class="w3-table-all")
+            tr 
+              th Tipo
+              th Nome
+              th Git
+              th 
+            each a in lista
+              tr
+                td
+                  a(href='/alunos/'+a.Número) #{a.Número}
+                td= a.Nome
+                td
+                  a(href=a.Git) #{a.Git}
+                td
+                  button.w3-button.w3-red(onclick="removeAluno('" + a.Número + "')" ) x
+                  a(href=('/alunos/editar/'+ a.Número) class='button.w3-button.w3-blue') +
+      else
+        div(class="w3-container")
+          p Ainda não há alunos registados...
+      footer(class="w3-container w3-teal")
+        address Gerado por galuno :: 2020-Novembro
