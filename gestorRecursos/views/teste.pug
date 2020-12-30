@@ -1,0 +1,46 @@
+extends layout
+block content
+    .w3-card-4 
+      //Registar Recurso
+      header.w3-container.w3-teal
+        h3 Registar Recurso
+      .w3-container
+        form.w3-container(action='/recursos' method='POST')
+          label
+            b Tipo
+          input.w3-input.w3-border.w3-light-grey(type='text', name='Tipo', value='')
+
+          label
+            b Titulo
+          input.w3-input.w3-border.w3-light-grey(type='text',name='Titulo' , value='')
+
+          label
+            b Visiblidade
+          input.w3-input.w3-border.w3-light-grey(type='text', name='Visiblidade', value='')
+          input.w3-btn.w3-blue-grey(type='submit' value='Registar')
+
+      hr
+
+      header.w3-container.w3-teal
+        h3 Lista de Recursos 
+      if lista.length > 0
+        .w3-container
+          table(class="w3-table-all")
+            tr 
+              th Tipo
+              th Titulo
+              th Visiblidade
+              th id
+
+            each a in lista
+                tr
+                    td= a.tipo
+                    td= a.titulo
+                    td= a.visiblidade
+                    td
+                      a(href='/recurso/'+a.id) #{a.id}
+      else
+        div(class="w3-container")
+          p Não existem Recursos
+      footer(class="w3-container w3-teal")
+        address Isto é um footer

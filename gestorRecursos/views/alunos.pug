@@ -1,33 +1,33 @@
 extends layout
 block content
     .w3-card-4 
-      //Registar Recurso
+      //Registar Aluno
       header.w3-container.w3-teal
-        h3 Registar Recurso
+        h3 Registar Aluno
       .w3-container
-        form.w3-container(action='/recursos' method='POST')
+        form.w3-container(action='/alunos/registar' method='POST')
           label
-            b Tipo
-          input.w3-input.w3-border.w3-light-grey(type='text', name='Tipo', value='')
+            b Número
+          input.w3-input.w3-border.w3-light-grey(type='text', name='Número', value='')
 
           label
-            b Titulo
-          input.w3-input.w3-border.w3-light-grey(type='text',name='Titulo' , value='')
+            b Nome
+          input.w3-input.w3-border.w3-light-grey(type='text',name='Nome' , value='')
 
           label
-            b Visiblidade
-          input.w3-input.w3-border.w3-light-grey(type='text', name='Visiblidade', value='')
+            b Git
+          input.w3-input.w3-border.w3-light-grey(type='text', name='Git', value='')
           input.w3-btn.w3-blue-grey(type='submit' value='Registar')
       
       hr
-      //Lista de Recursos
+      //Lista de Alunos
       header.w3-container.w3-teal
-        h3 Lista de Recursos 
+        h3 Lista de Alunos 
       if lista.length > 0
         .w3-container
           table(class="w3-table-all")
             tr 
-              th Tipo
+              th Número
               th Nome
               th Git
               th 

@@ -2,11 +2,11 @@ var mongoose = require('mongoose')
 
 var recursoSchema = new mongoose.Schema({
     id: String,
-    tipo: String,
+    tipo: String, // livros, artigos, aplicações, trabalhos de alunos, monografias, relatórios, ...
     titulo: String,
     dataRegisto: String,
-    visiblidade: String,
-    storeLocation: String //?
+    visiblidade: String
+    //storeLocation: String //?
 })
 
-module.exports = mongoose.model('Recurso', recursoSchema, 'recurso')
+module.exports = mongoose.model('Recurso', recursoSchema, 'recursos')
