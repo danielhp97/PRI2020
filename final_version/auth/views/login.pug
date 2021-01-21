@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h3 Autenticação básica (demo): Login
+  form(action="/users/login" method="POST")
+    input(type="text" name="id")
+    input(type="password" name="password")
+    input(type="submit" value="Enviar")
+    
