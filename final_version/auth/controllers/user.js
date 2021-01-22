@@ -10,9 +10,9 @@ module.exports.listar = () => {
         .exec()
 }
 
-module.exports.consultar = id => {
+module.exports.consultar = name => {
     return User
-        .findOne({_id: id})
+        .findOne({username: name})
         .exec()
 }
 
@@ -25,6 +25,6 @@ module.exports.remover = function(id){
     return User.deleteOne({_id: id})
 }
 
-module.exports.alterar = function(t){
-    return User.findByIdAndUpdate({_id: t._id}, t, {new: true})
+module.exports.alterar = function(u){
+    return User.findByIdAndUpdate({_id: u._id}, u, {new: true})
 }

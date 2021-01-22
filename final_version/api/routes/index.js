@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 const Recurso = require('../controllers/recursos')
-const User = require('../controllers/users');
+const User = require('../controllers/users_lista');
 //var admZip = require('adm-zip')
 //const Libxml = require('node-libxml');
 //let libxml = new Libxml();

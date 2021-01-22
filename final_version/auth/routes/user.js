@@ -1,12 +1,8 @@
 var express = require('express');
 var router = express.Router();
-
-var passport = require('passport')
-
-// Login page
-router.get('/login', function(req, res) {
-  res.render('login-form')
-})
+var User = require('../controllers/user');
+var passport = require('passport');
+var jwt = require('jsonwebtoken');
 
 router.get('/logout', function(req, res){
   req.logout();
@@ -18,9 +14,27 @@ router.get('/logout', function(req, res){
     }
   });
 });
-  
-router.post('/login', passport.authenticate('local'), function(req, res){
-  res.redirect('/protegida')
+
+router.get('/', function(req,res){
+  User.listar()
+    .then(dados => res.status(200).jsonp({dados:dados}))
+    .catch(e => res.status(500).jsonp({error: e}))
 })
+
+router.post('/', function(req,res){
+  User.inserir(req.body)
+    .then(dados => res.status(201).jsonp({dados:dados}))
+    .catch(e => res.status(500).jsonp({error: e}))
+})
+
+router.post('/login', passport.authenticate('local'), function(req, res){
+  jwt.sign({username: req.user.username, tipo: req.user.tipo, sub: 'Aula de PRI2020'},
+            "segredo",
+            function(e,token) {
+              if(e) res.status(500).jsonp({error: "Erro a gerar token: " + e})
+              else res.status(201).jsonp({token: token})
+            }
+          )
+        })
 
 module.exports = router;
