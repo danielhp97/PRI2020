@@ -1,4 +1,4 @@
-// Controlador para o modelo Tarefa
+// Controlador para o modelo Recurso
 
 var Recurso = require('../models/recursos')
 

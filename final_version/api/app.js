@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var logger = require('morgan');
+var jwt = require('jsonwebtoken');
 
 var indexRouter = require('./routes/index');
 
@@ -12,27 +13,23 @@ mongoose.connect(connectionstring,
         //serverSelectionTimeoutMS: 5000
       }
     );
-//
-//const MongoClient = require('mongodb').MongoClient;
-//const uri = "mongodb+srv://root:projetopri2020@cluster0.yy2rh.mongodb.net/tasks?retryWrites=true&w=majority";
-//const client = new MongoClient(uri, { useNewUrlParser: true });
-//client.connect(err => {
-//  const collection = client.db("test").collection("devices");
-//  // perform actions on the collection object
-//  client.close();
-//});
-
-//const db = mongoose.connection;
-//db.on('error', console.error.bind(console, 'Erro de conexão ao MongoDB...'));
-//db.once('open', function() {
-//  console.log("Conexão ao MongoDB realizada com sucesso...")
-//});
 
 var app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(function(req,res,next){
+  var token = req.query.token || req.body.token;
+  jwt.verify(token, 'segredo', function(e, payload){
+    if(e) res.status(401).jsonp({error: "Erro na verificacao do token" + e})
+    else{
+      req.user = {level:payload.level, username:payload.username}
+      next()
+    }
+  })
+})
 
 app.use('/', indexRouter);
 

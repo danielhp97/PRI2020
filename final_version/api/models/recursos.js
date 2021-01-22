@@ -5,7 +5,7 @@ var recursoSchema = new mongoose.Schema({
     tipo: String, // livros, artigos, aplicações, trabalhos de alunos, monografias, relatórios, ...
     titulo: String,
     dataRegisto: String,
-    visiblidade: String
+    curso: String
     //storeLocation: String //?
 })
 
