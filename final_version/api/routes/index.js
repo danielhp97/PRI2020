@@ -33,6 +33,33 @@ router.post('/recursos', (req, res) => {
       .catch(e => res.render('error', {error: e}))
 })
 
+//upload : será aqui ou app?
+router.post('/inserir', upload.single('myFile'), function(req,res){
+  var zip = new admZip(req.file.path);
+  var total_entries=zip.getEntries();
+  total_entries.forEach(item => {
+    if(item.name=="metadata.xml"){
+      var content=item.getData().toString('utf8');
+      libxml.loadDtds(['../temp/dtd/rule.dtd']); //nã tá criada a pasta ainda
+      libxml.loadXmlFromString(content);
+      let xmlIsValid = libxml.validateAgainstDtds();
+      if(item.name=="segundo.xml" && xmlIsValid != false) {
+        console.log('XML is valid!: Zip ' + req.file.path + ' was correctly introduced.\n' + 'Validated with ' + item.name);
+        res.writeHead(200, { 'Content-Type': 'text/html;charset=utf-8' })
+        res.write('<h1>Valid Upload</h1>');
+        res.write('<pre>' + JSON.stringify(req.file) + '</pre>');
+        res.end();
+        } else{
+          console.log('Error on manifesto: Please correct the manifesto');
+          console.log(xmlIsValid);
+          res.status(401);
+          res.write('<h1>Invalid Upload: Check metadata</h1>');
+          res.end();
+        }
+      }
+    });
+});
+
 // Alterar uma tarefa
 router.put('/recursos', function(req, res){
   Recurso.alterar(req.body)

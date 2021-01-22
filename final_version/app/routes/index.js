@@ -30,4 +30,11 @@ router.get('/', function(req, res) {
     .catch(e => res.render('error', {error: e}))
 });
 
+router.get('/recursos/upload', function(req,res) {
+  axios.get('http://localhost:8001/recursos/upload?token=' + req.cookies.token)
+    .then(dados => res.render('form_upload', {lista: dados.data}))
+    .catch(e => res.render('error', {error: e}))
+})
+
+
 module.exports = router;
