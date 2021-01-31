@@ -80,10 +80,17 @@ router.delete('/recursos/:id', function(req, res) {
 
 
 // ------------------------------------------------ user
-router.get('/user', (req, res) => {
-  User.listar()
-    .then(dados => res.status(200).jsonp(dados) )
-    .catch(e => res.status(500).jsonp({error: e}))
+router.get('/users', (req, res) => {
+  console.log(User.tipo);
+  passport.authenticate('local', function(err, user) {
+    if (User.tipo === 'admin'){
+      User.listar()
+        .then(dados => res.status(200).jsonp(dados))
+        .catch(e => res.status(500).jsonp({error: e}))
+    }else{
+      return res.send(403);
+    }
+  })
 });
 
 router.get('/user/:id', function(req, res) {

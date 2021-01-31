@@ -18,12 +18,12 @@ router.post('/login', function(req, res) {
         secure: false, // set to true if your using https
         httpOnly: true
       });
-      res.redirect('/tarefas')
+      res.redirect('/')
     })
     .catch(e => res.render('error', {error: e}))
 });
 
-router.get('/', function(req, res) {
+router.get('/recursos', function(req, res) {
   console.log(JSON.stringify(req.cookies))
   axios.get('http://localhost:8001/?token=' + req.cookies.token)
     .then(dados => res.render('listaRecursos', {lista: dados.data}))
