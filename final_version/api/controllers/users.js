@@ -1,6 +1,6 @@
 // Controlador para o modelo UserL
 
-var UserL = require('../models/users_lista')
+var UserL = require('../models/users')
 
 // Devolve a lista de Tarefas
 module.exports.listar = () => {

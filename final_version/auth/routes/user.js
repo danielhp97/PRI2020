@@ -27,14 +27,16 @@ router.post('/', function(req,res){
     .catch(e => res.status(500).jsonp({error: e}))
 })
 
-router.post('/login', passport.authenticate('local'), function(req, res){
-  jwt.sign({username: req.user.username, tipo: req.user.tipo, sub: 'Aula de PRI2020'},
-            "segredo",
+router.post('/login', passport.authenticate('user'), function(req, res){
+  jwt.sign({username: req.user.username,
+            tipo: req.user.tipo,
+            sub: 'Login Geral'}, "segredo",
             function(e,token) {
               if(e) res.status(500).jsonp({error: "Erro a gerar token: " + e})
               else res.status(201).jsonp({token: token})
             }
           )
         })
+
 
 module.exports = router;

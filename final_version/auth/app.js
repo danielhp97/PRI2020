@@ -21,7 +21,7 @@ mongoose.connect(connectionstring,
 
 var User = require('./controllers/user');
 // Configuração da estratégia local
-passport.use(new LocalStrategy(
+passport.use('user', new LocalStrategy(
   {usernameField: 'username'}, (username, password, done) => {
     User.consultar(username)
       .then(dados=> {
@@ -36,8 +36,7 @@ passport.use(new LocalStrategy(
 
 // Indica-se ao passport como serializar o utilizador
 passport.serializeUser((user,done) => {
-  console.log('Serielização, id: ' + user.username)
-  done(null, user.username)
+  done(null, user.username, user.tipo)
 })
 
 // Desserialização: a partir do id obtem-se a informação do utilizador
