@@ -14,8 +14,9 @@ router.get('/', (req, res) => {
       .catch(e => res.status(500).jsonp({error: e}))
 });
 
-router.get('/:id', function(req, res) {
-  User.consultar(req.params.id)
+router.get('(\/[A-Z]+[0-9]+)', function(req, res) {
+  var idUser = req.url.split("/")[1]
+  User.consultar(idUser)
     .then(dados => res.status(200).jsonp(dados))
     .catch(e => res.status(500).jsonp({error: e}))
 });

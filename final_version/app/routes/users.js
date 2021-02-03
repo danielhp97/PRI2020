@@ -43,8 +43,9 @@ function(req, res, next) {
 //router.delete('/manage'),
 
 // pagina individual do user ( não tá funcional!)
-router.get('(\/[A-Z]+[1-9]+)', (req, res) => {
+router.get('(\/[A-Z]+[0-9]+)', (req, res) => {
     var idUser = req.url.split("/")[1]
+    console.log(idUser);
     axios.get('http://localhost:8001/users/' + idUser + '?token=' + req.cookies.token)
       .then(dados => res.render('userDetalhado', {lista: dados.data}))
       .catch(e => res.render('error', {error: e}))
