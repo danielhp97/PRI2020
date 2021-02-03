@@ -7,8 +7,7 @@ const User = require('../controllers/users');
 //const Libxml = require('node-libxml');
 //let libxml = new Libxml();
 
-// ------------------------------------------------ recurso
-// Listar todas as tarefas
+// Não necessário. 
 router.get('/', (req, res) => {
   Recurso.listar()
     .then(dados => res.status(200).jsonp(dados) )

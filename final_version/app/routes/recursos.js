@@ -18,6 +18,12 @@ function(req, res, next) {
     .catch(e => res.render('error', {error: e}))
 });
 
+// pagina individual do recurso ( não tá funcional!)
+router.get('/:id', function(req,res) {
+  axios.get('http://localhost:8001/recursos/' + id + '?token=' + req.cookies.token)
+    .then(dados => res.render('form_upload', {lista: dados.data}))
+    .catch(e => res.render('error', {error: e}))
+})
 
 //upload de recursos
 router.get('/upload', function(req,res) {
