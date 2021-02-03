@@ -9,7 +9,7 @@ var axios = require('axios')
 //  next()
 //},
 
-// lista de users
+// lista de users (protegida, apenas para admins.)
 router.get('/',
 function(req, res, next) {
   var dados = jwt_decode(req.cookies.token).tipo;
@@ -34,13 +34,22 @@ function(req, res, next) {
     .then(dados => res.render('listaUsers', {lista: dados.data}))
     .catch(e => res.render('error', {error: e}))
 });
-//além disso, faltam aqui as rotas de post/put para comunicar com a API de forma a alterar os dados dos users
+//além disso, faltam aqui as rotas de post/put para comunicar com a API de forma a alterar os dados dos users (abaixo)
+
+// router.put('/manage'),
+
+// router.post('/manage'),
+
+//router.delete('/manage'),
 
 // pagina individual do user ( não tá funcional!)
-router.get('/:id', function(req,res) {
-  axios.get('http://localhost:8001/users/' + id + '?token=' + req.cookies.token)
-    .then(dados => res.render('form_upload', {lista: dados.data}))
-    .catch(e => res.render('error', {error: e}))
+router.get('(\/[A-Z]+[1-9]+)', (req, res) => {
+    var idUser = req.url.split("/")[1]
+    axios.get('http://localhost:8001/users/' + idUser + '?token=' + req.cookies.token)
+      .then(dados => res.render('userDetalhado', {lista: dados.data}))
+      .catch(e => res.render('error', {error: e}))
 })
+
+
 
 module.exports = router;

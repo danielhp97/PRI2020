@@ -6,13 +6,7 @@ router.get('/', function(req, res) {
   res.render('index');
 });
 
-router.get('/',
-function(req, res, next) {
-  var dados = jwt_decode(req.cookies.token).tipo;
-  if (dados != 'admin') res.status(403).send('Access denied.')
-  next()
-},
-  function(req, res) {
+router.get('/', function(req, res) {
   axios.get('http://localhost:8001/?token=' + req.cookies.token)
     .then(dados => res.render('listaRecursos', {lista: dados.data}))
     .catch(e => res.render('error', {error: e}))
@@ -21,7 +15,7 @@ function(req, res, next) {
 // pagina individual do recurso ( não tá funcional!)
 router.get('/:id', function(req,res) {
   axios.get('http://localhost:8001/recursos/' + id + '?token=' + req.cookies.token)
-    .then(dados => res.render('form_upload', {lista: dados.data}))
+    .then(dados => res.render('resourcePage', {lista: dados.data}))
     .catch(e => res.render('error', {error: e}))
 })
 
@@ -31,5 +25,12 @@ router.get('/upload', function(req,res) {
     .then(dados => res.render('form_upload', {lista: dados.data}))
     .catch(e => res.render('error', {error: e}))
 })
+//ver o rec. upload, se o sistema de validação continua no API (como está agora, lá comentado) ou passa para aqui
+
+//falta aqui uma página de "manage" tipo os dos users, que dê para alterar e apagar recursos.
+
+//router.post
+
+//router.put
 
 module.exports = router;
