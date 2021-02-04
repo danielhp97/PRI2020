@@ -1,0 +1,16 @@
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/w3.css')
+  body
+    .w3-container.w3-margin.w3-border
+      .w3-container.w3-blue
+        h3 Insira o ficheiro: (zip only)
+      form.w3.container(action='/inserir' method='POST')
+        form(method='post', enctype='multipart/form-data')
+        input(type='file', name='myFile1')
+        input(type='submit', name='myFile', value='Upload Zip')
+    .w3-container.w3-blue.w3-center
+      p
+      a.w3-margin(href="/") Voltar a homepage
+      p
