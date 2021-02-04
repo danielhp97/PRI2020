@@ -8,7 +8,10 @@ router.get('/logout', function(req, res){
   req.logout();
   req.session.destroy(function (err) {
     if (!err) {
-        res.redirect('/');
+      console.log('Sessão destruida: ', err)
+
+        res.status(200);
+        //res.redirect('/');
     } else {
         console.log('Destroy session error: ', err)
     }

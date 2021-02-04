@@ -9,6 +9,31 @@ var axios = require('axios')
 //  next()
 //},
 
+if (typeof localStorage === "undefined" || localStorage === null) {
+  var LocalStorage = require('node-localstorage').LocalStorage;
+  localStorage = new LocalStorage('./localState');
+}
+ 
+
+router.post('/registo', function(req, res){
+  console.log('req.url ? ' + req.url + 'Info do pedido req.body: '+ JSON.stringify(req.body));
+  var usr = {
+      username: req.body.username,
+      password: req.body.password,
+      email: req.body.email,
+      tipo: req.body.tipo
+  }
+                                           //ou do req body
+  axios.post('http://localhost:8002/users', usr) //dá post no server da autenticacao porque na precisa de token
+    .then( dados => {
+      res.redirect('/')
+    })
+
+    .catch(e => res.render('error', {error: e}))
+});
+
+
+
 // lista de users (protegida, apenas para admins.)
 router.get('/',
 function(req, res, next) {

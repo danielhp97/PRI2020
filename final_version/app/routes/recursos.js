@@ -2,12 +2,11 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios')
 var jwt_decode = require('jwt-decode')
-router.get('/', function(req, res) {
-  res.render('index');
-});
 
+
+//get todos os recursos
 router.get('/', function(req, res) {
-  axios.get('http://localhost:8001/?token=' + req.cookies.token)
+  axios.get('http://localhost:8001/recursos?token=' + req.cookies.token)
     .then(dados => res.render('listaRecursos', {lista: dados.data}))
     .catch(e => res.render('error', {error: e}))
 });

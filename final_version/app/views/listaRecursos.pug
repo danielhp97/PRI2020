@@ -1,18 +1,19 @@
 extends layout
 
 block content
-  h1 Lista de Tarefas
+  h1 Lista de Recursos
   .w3-container.w3-margin
     table.w3-table-all
         tr
-            th ID:
+            th Tipo
             th Título
             th DataRegisto
-            th Visibilidade
+            th Curso
         each t in lista
             tr
+                td= t.tipo
                 td= t.titulo
                 td= t.dataRegisto
-                td= t.visibilidade
-                td Remover
+                td= t.curso
 
+            //td = t._id  //#{t._id}??

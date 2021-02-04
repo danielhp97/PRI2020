@@ -35,6 +35,7 @@ router.delete('/:id', function(req, res) {
 });
 
 router.post('/', (req, res) => {
+  console.log('req body: ' + JSON.stringify(req.body))
   User.inserir(req.body)
     .then(dados => res.status(201).jsonp({dados:dados}))
     .catch(e => res.status(500).jsonp({error: e}))

@@ -10,6 +10,18 @@ router.get('/login', function(req, res) {
   res.render('login-form');
 });
 
+//get pag registo
+router.get('/registo', function(req, res) {
+  console.log('Info do pedido req.body: '+ JSON.stringify(req.body));
+  res.render('registo');
+});
+
+/*
+router.get('/logout', function(req,res){
+
+})
+*/
+
 router.post('/login', function(req, res) {
   axios.post('http://localhost:8002/users/login', req.body)
     .then(dados => {
@@ -23,6 +35,7 @@ router.post('/login', function(req, res) {
     .catch(e => res.render('error', {error: e}))
 });
 
+/*
 router.get('/recursos',
 function(req, res, next) {
   var dados = jwt_decode(req.cookies.token).tipo;
@@ -34,7 +47,7 @@ function(req, res, next) {
     .then(dados => res.render('listaRecursos', {lista: dados.data}))
     .catch(e => res.render('error', {error: e}))
 });
-
+*/
 
 //upload de recursos
 router.get('/recursos/upload', function(req,res) {

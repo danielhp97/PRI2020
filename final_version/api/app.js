@@ -22,7 +22,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+
 app.use(function(req,res,next){
+
   var token = req.query.token || req.body.token;
   jwt.verify(token, "segredo", function(e, payload){
     if(e) res.status(401).jsonp({error: "Erro na verificacao do token" + e})
@@ -32,6 +34,7 @@ app.use(function(req,res,next){
     }
   })
 })
+
 
 app.use('/', indexRouter);
 app.use('/recursos', recursoRouter);
