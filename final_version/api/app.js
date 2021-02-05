@@ -29,7 +29,7 @@ app.use(function(req,res,next){
   jwt.verify(token, "segredo", function(e, payload){
     if(e) res.status(401).jsonp({error: "Erro na verificacao do token" + e})
     else{
-      req.user = {tipo:payload.tipo, username:payload.username}
+      req.user = {username:payload.username, level:payload.level}
       next()
     }
   })

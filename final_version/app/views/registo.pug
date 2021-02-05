@@ -3,29 +3,36 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/w3.css')
   body
-    .w3-container.w3-deep-orange
+    .w3-container.w3-indigo
       h2.w3-left= title
+      h3 Registar
     .w3-container.w3-sand.w3-margin.w3-border
       form.w3-container(action="/users/registo" method="POST")
         p
         label.w3-bold Nome
+        input.w3-input.w3-border(name="name" type="text")
+        p         
+        label.w3-bold Username
         input.w3-input.w3-border(name="username" type="text")
-        p      
+        p     
         label.w3-bold Email
         input.w3-input.w3-border(name="email" type="text")
-        p         
+        p
         label.w3-bold Password
-        input.w3-input.w3-border(name="password" type="password")
-        p
+        input.w3-input.w3-border(name="password" type="text")
+        p         
+        label.w3-bold Filiação
+          select.w3-input.w3-border(name="filiation")
+            option(value="professor" selected) Professor
+            option(value="estudante") Estudante
         lable Tipo de Utilizador
-        select.w3-input.w3-border(name="tipo")
-          option(value="produtor" selected) Produtor
-          option(value="consumidor") Consumidor
-          option(value="admin") Administrador
+          select.w3-input.w3-border(name="level")
+            option(value="produtor" selected) Produtor
+            option(value="consumidor") Consumidor
+            option(value="admin") Administrador
 
-        p
-        button.w3-deep-orange.w3-round-xxlarge.w3-margin(type="submit") Sign Up
-    .w3-container.w3-deep-orange.w3-center
+        button.w3-indigo.w3-round-xxlarge.w3-margin(type="submit") Sign Up
+    .w3-container.w3-indigo.w3-center
       p
       a.w3-margin(href="/login") Login
       a.w3-margin(href="/") Voltar a homepage

@@ -18,17 +18,17 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 router.post('/registo', function(req, res){
   console.log('req.url ? ' + req.url + 'Info do pedido req.body: '+ JSON.stringify(req.body));
   var usr = {
+      name: req.body.name,
       username: req.body.username,
-      password: req.body.password,
       email: req.body.email,
-      tipo: req.body.tipo
+      password: req.body.password,
+      filiation: req.body.filiation,
+      level: req.body.level,
+      dateRegister: new Date().toISOString().slice(0,10),
   }
                                            //ou do req body
   axios.post('http://localhost:8002/users', usr) //dá post no server da autenticacao porque na precisa de token
-    .then( dados => {
-      res.redirect('/')
-    })
-
+    .then(res.redirect('/'))  
     .catch(e => res.render('error', {error: e}))
 });
 

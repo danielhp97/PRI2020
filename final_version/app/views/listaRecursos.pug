@@ -5,15 +5,23 @@ block content
   .w3-container.w3-margin
     table.w3-table-all
         tr
+            th Titulo
+            th Subtítulo
+            th Descrição
             th Tipo
-            th Título
-            th DataRegisto
-            th Curso
-        each t in lista
+            th Ano
+            th UC
+            th Visibilidade
+            th Data Criação
+            th Rank
+        each r in lista
             tr
-                td= t.tipo
-                td= t.titulo
-                td= t.dataRegisto
-                td= t.curso
-
-            //td = t._id  //#{t._id}??
+                td= r.title
+                td= r.subtitle
+                td= r.desc
+                td= r.type
+                td= r.year
+                td= r.uc
+                td= r.visibility
+                td= r.dateCreation
+                td= r.rank

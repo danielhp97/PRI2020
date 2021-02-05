@@ -5,11 +5,22 @@ block content
   .w3-container.w3-margin
     table.w3-table-all
         tr
-            th Username:
-            th Tipo:
+            th Name
+            th Username
+            th Email
+            th Password
+            th Filiação
+            th Nivel
+            th Data Registo
+            th Data Ultimo Acesso
         each u in lista
             tr
+                td= u.name
                 td= u.username
-                td= u.tipo
-                td Remover
+                td= u.email
+                td= u.password
+                td= u.filiation
+                td= u.level
+                td= u.dateRegister
+                td= u.dateLastAcess
 

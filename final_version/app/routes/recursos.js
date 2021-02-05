@@ -28,13 +28,34 @@ router.get('/', function(req, res) {
 //     .catch(e => res.render('error', {error: e}))
 // })
 
+router.post('/', function(req,res){
+  console.log('req.url ? ' + req.url + 'Info do pedido req.body: '+ JSON.stringify(req.body));
+
+  var recurso = {
+    title: req.body.title,
+    subtitle: req.body.subtitle,
+    desc: req.body.desc,
+    type: req.body.type,
+    year: req.body.year,
+    uc: req.body.uc,
+    visibility: req.body.visibility,
+    dateCreation: new Date().toISOString().slice(0,10),
+    rank: "0",
+  }
+  axios.post('http://localhost:8001/recursos?token=' + req.cookies.token, recurso)
+    .then( res.redirect('/'))
+    .catch(e => res.render('error', {error: e}))
+});
+
 //upload de recursos
 router.get('/upload', function(req,res) {
   res.render('form_upload')
 })
 
+
 //upload : será aqui ou api? - no lado da app, aqui é o post apenas do json value. A app faz um route para aqui.
  router.post('/inserir', upload.single('myFile'), function(req,res){
+  console.log('Info do pedido req.body: '+ JSON.stringify(req.body));
    var zip = new admZip(req.file.path);
    var total_entries=zip.getEntries();
    total_entries.forEach(item => {
@@ -49,7 +70,7 @@ router.get('/upload', function(req,res) {
          reres.status(200).jsonp(req.file);
          res.end();
          } else{
-           console.log('Error on manifesto: Please correct the manifesto');
+           console.log('Error on manifebtcsto: Please correct the manifesto');
            res.status(401).jsonp(req.file);
            res.end();
          }

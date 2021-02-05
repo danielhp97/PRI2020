@@ -25,14 +25,17 @@ router.get('/', function(req,res){
 })
 
 router.post('/', function(req,res){
+  console.log('Info do pedido req.body: '+ JSON.stringify(req.body));
   User.inserir(req.body)
     .then(dados => res.status(201).jsonp({dados:dados}))
     .catch(e => res.status(500).jsonp({error: e}))
 })
 
 router.post('/login', passport.authenticate('user'), function(req, res){
-  jwt.sign({username: req.user.username,
-            tipo: req.user.tipo,
+  console.log('Info do pedido req.body: '+ JSON.stringify(req.body));
+  jwt.sign({
+            username: req.user.username,
+            level: req.user.level,
             sub: 'Login Geral'}, "segredo",
             function(e,token) {
               if(e) res.status(500).jsonp({error: "Erro a gerar token: " + e})

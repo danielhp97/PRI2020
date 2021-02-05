@@ -24,7 +24,7 @@ router.get('/:id', function(req, res) {
 
 // Inserir uma tarefa
 router.post('/', (req, res) => {
-  //console.log('Info do pedido req.body: '+ JSON.stringify(req.body) + ' req.param.id: '+req.params.id);
+  console.log('Info do pedido req.body: '+ JSON.stringify(req.body));
   //var r = {
     //id: String, gerar id?
   //  tipo: req.body.Tipo,

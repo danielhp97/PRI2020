@@ -27,3 +27,4 @@ module.exports.remover = function(id){
 module.exports.alterar = function(t){
     return UserL.findByIdAndUpdate({_id: t._id}, t, {new: true})
 }
+

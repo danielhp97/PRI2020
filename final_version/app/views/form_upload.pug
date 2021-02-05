@@ -5,12 +5,21 @@ html
   body
     .w3-container.w3-margin.w3-border
       .w3-container.w3-blue
-        h3 Insira o ficheiro: (zip only)
-      form.w3.container(action='/inserir' method='POST')
-        form(method='post', enctype='multipart/form-data')
-        input(type='file', name='myFile1')
-        input(type='submit', name='myFile', value='Upload Zip')
-    .w3-container.w3-blue.w3-center
-      p
-      a.w3-margin(href="/") Voltar a homepage
-      p
+        h3 Criar Recurso: (zip only)
+        form.w3.container(action='/recursos/inserir' method='POST', enctype='multipart/form-data')
+          p      
+          label.w3-bold Tipo
+          input.w3-input.w3-border(type="text", name="tipo")
+          p         
+          label.w3-bold Titulo
+          input.w3-input.w3-border(type="text", name="titulo")
+          p
+          label.w3-bold File
+          input.w3-input.w3-border(type="file", name="myFile")
+
+          p
+          button.btn.btn-primary(type='submit') Submit    
+      .w3-container.w3-blue.w3-center
+        p
+        a.w3-margin(href="/") Voltar a homepage
+        p
