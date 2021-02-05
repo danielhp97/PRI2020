@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!ELEMENT recurso (title,subtitle,desc,type,year,uc,visibility,dateCreation,rank)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT subtitle (#PCDATA)>
+<!ELEMENT desc (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT year (#PCDATA)>
+<!ELEMENT uc (#PCDATA)>
+<!ELEMENT visibility (#PCDATA)>
+<!ELEMENT dateCreation (#PCDATA)>
+<!ELEMENT rank (#PCDATA)>
