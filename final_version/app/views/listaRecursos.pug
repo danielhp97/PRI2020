@@ -51,7 +51,7 @@ block content
                     td= r.visibility
                     td= r.dateCreation
                     td= r.rank
-                    td= href="/recursos/upload/#{r._id}"
+                    td= href="/recursos/download/#{r.downloadName}"
                     td.w3-center
                         a(href="/recursos/"+r._id) Ver
                             //button.w3-button.w3-teal(onclick="verRecurso('" + r._id + "')" style="margin-right: 5%") Ver Informação

@@ -22,6 +22,13 @@ router.get('/:id', function(req, res) {
     .catch(e => res.status(500).jsonp({error: e}))
 });
 
+// Consultar download
+router.get('/download/:downloadName', function(req, res) {
+  Recurso.consultarDownload(req.params.downloadName)
+    .then(dados => res.status(200).jsonp(dados))
+    .catch(e => res.status(500).jsonp({error: e}))
+});
+
 // Inserir uma tarefa
 router.post('/', (req, res) => {
   console.log('Info do pedido req.body: '+ JSON.stringify(req.body));

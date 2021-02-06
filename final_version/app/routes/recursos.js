@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios')
 var jwt_decode = require('jwt-decode')
-
+var path = require('path')
 const xml2js = require('xml2js');
 var admZip = require('adm-zip')
 const Libxml = require('node-libxml');
@@ -14,13 +14,8 @@ var storage = multer.diskStorage({
     destination: function (request, file, callback) {
         callback(null, './public/uploads/');
     },
-    filename: function (request, file, callback) {
-        if (request.recurso) {
-           // TODO: consider adding file type extension
-           return callback(null, request.recurso.titulo.toString());
-        }
-        // fallback to the original name if you don't have a book attached to the request yet.
-        return callback(null, file.originalname)
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now())
     }
 });
 
@@ -83,10 +78,9 @@ router.post('/inserir', upload.single('myFile'), function(req,res){
                 year: req.body.year,
                 uc: req.body.uc,
                 visibility: req.body.visibility,
-                dateCreation: new Date().toISOString().slice(0,10)
+                dateCreation: new Date().toISOString().slice(0,10),
+                downloadName: req.file.filename
             };
-            console.log(req.body)
-            console.log(req.body.title)
 
             var json_metadata = JSON.stringify(result.recurso)
             axios.post('http://localhost:8001/recursos?token=' + req.cookies.token, rcs)
@@ -110,9 +104,13 @@ router.post('/inserir', upload.single('myFile'), function(req,res){
 });
 
 router.get('/download/:filename', function(req, res) {
-   res.download(__dirname + '/public/fileStore/' + req.params.filename)
+axios.get('http://localhost:8001/recursos/download/' + req.params.filename + '?token=' + req.cookies.token)
+ .then(res.download(path.join(__dirname, '..', 'public', 'filestore') + '/' + req.params.filename)) //res.download(__dirname + '/public/fileStore/' + req.body.downloadName)
+ .catch(res.send('Could not find the file'))
 })
-
+// axios.get('http://localhost:8001/recursos/' + req.params.filename + '?token=' + req.cookies.token)
+//  .then(console.log(__dirname + '/public/fileStore/' + req.body.downloadName)) //res.download(__dirname + '/public/fileStore/' + req.body.downloadName)
+//  .catch(res.render('Could not find the file'))
 //falta aqui uma página de "manage" tipo os dos users, que dê para alterar e apagar recursos.
 
 //router.post

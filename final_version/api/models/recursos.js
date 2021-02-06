@@ -10,7 +10,8 @@ var recursoSchema = new mongoose.Schema({
     uc: String,
     visibility: String, //público: todos podem ver e descarregar,privado: apenas disponível para administradores e seu produtor
     dateCreation: String,
-    rank: String
+    rank: String,
+    downloadName: String
 })
 
 

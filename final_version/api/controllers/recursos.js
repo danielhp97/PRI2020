@@ -27,3 +27,9 @@ module.exports.remover = function(id){
 module.exports.alterar = function(t){
     return Recurso.findByIdAndUpdate({_id: t._id}, t, {new: true})
 }
+
+module.exports.consultarDownload = d => {
+    return Recurso
+        .findOne({downloadName: d})
+        .exec()
+}
