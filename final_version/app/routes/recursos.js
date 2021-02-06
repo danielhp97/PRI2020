@@ -36,11 +36,12 @@ router.get('/', function(req, res) {
 
 //upload de recursos
 router.get('/upload', function(req,res) {
-  res.render('form_upload')
+  res.render('new-recurso')
 })
 
  router.post('/inserir', upload.single('myFile'), function(req,res){
    var check = 0;
+   if(req.file.path === undefined) { res.status(304).send('Please fill all of the form')}
    var zip = new admZip(req.file.path);
    var total_entries=zip.getEntries();
    total_entries.forEach(item => {
@@ -59,23 +60,23 @@ router.get('/upload', function(req,res) {
                throw err;
              }
              const json = JSON.stringify(result);
-             //res.status(200).send(JSON.stringify(result, null, 4));
-             //res.end();
-             //console.log(json.recurso);
-             var json_post = {
-               title: JSON.stringify(result.recurso.title),
-               subtitle: JSON.stringify(result.recurso.subtitle),
-               desc: JSON.stringify(result.recurso.desc),
-               type: JSON.stringify(result.recurso.type),
-               year: JSON.stringify(result.recurso.year),
-               uc: JSON.stringify(result.recurso.uc),
-               visibility: JSON.stringify(result.recurso.visibility),
-               dateCreation: JSON.stringify(result.recurso.dateCreation),
-               rank: JSON.stringify(result.recurso.rank)
-             }
-             console.log(json_post.title);
-             axios.post('http://localhost:8001/recursos?token=' + req.cookies.token)
-               .then(json)
+
+             var rcs = {
+                 title: req.body.title,
+                 subtitle: req.body.subtitle,
+                 desc : req.body.desc,
+                 type: req.body.type,
+                 year: req.body.year,
+                 uc: req.body.uc,
+                 visibility: req.body.visibility,
+                 dateCreation: new Date().toISOString().slice(0,10)
+             };
+             console.log(req.body)
+             console.log(req.body.title)
+
+             var json_metadata = JSON.stringify(result.recurso)
+             axios.post('http://localhost:8001/recursos?token=' + req.cookies.token, rcs)
+               .then(res.redirect('/'))
                .catch(e => res.render('error', {error: e}))
           });
            //console.log('XML is valid!: Zip ' + req.file.path + ' was correctly introduced.\n' + 'Validated with ' + item.name);

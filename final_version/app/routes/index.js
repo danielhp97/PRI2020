@@ -23,9 +23,6 @@ router.get('/listausers', function(req, res) {
     .catch(e => res.render('error', {error: e}))
 });
 
-router.get('/novorecurso', function(req,res){
-  res.render('new-recurso')
-});
 /*
 router.get('/logout', function(req,res){
 
