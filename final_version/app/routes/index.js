@@ -16,10 +16,7 @@ router.get('/index', function(req, res) {
   res.render('index');
 });
 
-//upload de recursos
-router.get('/upload', function(req,res) {
-  res.render('new-recurso')
-})
+
 
 //get pag registo
 router.get('/registo', function(req, res) {
@@ -27,19 +24,19 @@ router.get('/registo', function(req, res) {
   res.render('registo');
 });
 
-router.get('/listausers', function(req, res) {
+router.get('/users/lista', function(req, res) {
   console.log('Info do pedido req.body: '+ JSON.stringify(req.body));
   axios.get('http://localhost:8001/users?token=' + req.cookies.token)
     .then(dados => res.render('listaUsers', {lista: dados.data}))
     .catch(e => res.render('error', {error: e}))
 });
 
-router.get('/repositorio', function(req, res) {
-  console.log('Info do pedido req.body: '+ JSON.stringify(req.body));
-  axios.get('http://localhost:8001/recursos/?token=' + req.cookies.token)
-    .then(dados => res.render('listaRecursos', {lista: dados.data}))
-    .catch(e => res.render('error', {error: e}))
-});
+// router.get('/recursos/repositorio', function(req, res) {
+//   console.log('Info do pedido req.body: '+ JSON.stringify(req.body));
+//   axios.get('http://localhost:8001/recursos/?token=' + req.cookies.token)
+//     .then(dados => res.render('listaRecursos', {lista: dados.data}))
+//     .catch(e => res.render('error', {error: e}))
+// });
 
 
 /*
@@ -58,7 +55,7 @@ router.post('/login', function(req, res) {
       });
       res.redirect('/home')
     })
-    .catch(e => res.render('Credenciais Inválidas', {error: e}))
+    .catch(e => res.send('Crendenciais Invalidas'))
 });
 
 /*
@@ -75,5 +72,8 @@ function(req, res, next) {
 });
 */
 
+router.get('/recursos/upload', function(req,res) {
+  res.render('new-recurso')
+});
 
 module.exports = router;

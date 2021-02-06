@@ -34,6 +34,8 @@ var upload = multer({dest: './public/uploads/',
     }
   }, storage: storage
 })
+
+
 //get todos os recursos
 router.get('/', function(req, res) {
   axios.get('http://localhost:8001/recursos?token=' + req.cookies.token)
@@ -47,12 +49,8 @@ router.get('/:id', function(req, res) {
     .catch(e => res.render('error', {error: e}))
 });
 
-// pagina individual do recurso ( não tá funcional!)
-// router.get('/:id', function(req,res) {
-//   axios.get('http://localhost:8001/recursos/' + id + '?token=' + req.cookies.token)
-//     .then(dados => res.render('resourcePage', {lista: dados.data}))
-//     .catch(e => res.render('error', {error: e}))
-// })
+
+//upload de recursos
 
 
 router.post('/inserir', upload.single('myFile'), function(req,res){
@@ -120,5 +118,6 @@ router.get('/download/:filename', function(req, res) {
 //router.post
 
 //router.put
+
 
 module.exports = router;

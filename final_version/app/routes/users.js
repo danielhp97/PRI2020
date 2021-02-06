@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var axios = require('axios')
+var jwt_decode = require('jwt-decode')
+
 
 /* middleware for protecting admin only routes */
 //function(req, res, next) {
-//  var dados = jwt_decode(req.cookies.token).tipo;
+//  var dados = jwt_decode(req.cookies.token).level;
 //  if (dados != 'admin') res.status(403).send('Access denied.')
 //  next()
 //},
@@ -13,7 +15,7 @@ if (typeof localStorage === "undefined" || localStorage === null) {
   var LocalStorage = require('node-localstorage').LocalStorage;
   localStorage = new LocalStorage('./localState');
 }
- 
+
 
 router.post('/registo', function(req, res){
   console.log('req.url ? ' + req.url + 'Info do pedido req.body: '+ JSON.stringify(req.body));
@@ -28,7 +30,7 @@ router.post('/registo', function(req, res){
   }
                                            //ou do req body
   axios.post('http://localhost:8002/users', usr) //dá post no server da autenticacao porque na precisa de token
-    .then(res.redirect('/'))  
+    .then(res.redirect('/'))
     .catch(e => res.render('Erro no Registo', {error: e}))
 });
 
@@ -37,7 +39,7 @@ router.post('/registo', function(req, res){
 // lista de users (protegida, apenas para admins.)
 router.get('/',
 function(req, res, next) {
-  var dados = jwt_decode(req.cookies.token).tipo;
+  var dados = jwt_decode(req.cookies.token).level;
   if (dados != 'admin') res.status(403).send('Access denied.')
   next()
 }, function(req, res) {
