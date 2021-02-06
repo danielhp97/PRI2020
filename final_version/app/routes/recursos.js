@@ -71,6 +71,7 @@ router.post('/inserir', upload.single('myFile'), function(req,res){
             const json = JSON.stringify(result);
 
             var rcs = {
+                author: jwt_decode(req.cookies.token).id,
                 title: req.body.title,
                 subtitle: req.body.subtitle,
                 desc : req.body.desc,

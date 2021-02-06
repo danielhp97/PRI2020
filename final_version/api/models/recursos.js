@@ -11,7 +11,8 @@ var recursoSchema = new mongoose.Schema({
     visibility: String, //público: todos podem ver e descarregar,privado: apenas disponível para administradores e seu produtor
     dateCreation: String,
     rank: String,
-    downloadName: String
+    downloadName: String,
+    //author_name: String
 })
 
 
