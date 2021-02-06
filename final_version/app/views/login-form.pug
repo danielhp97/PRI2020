@@ -1,14 +1,22 @@
 extends layout
 
 block content
-  .w3-container.w3-margin.w3-border
-    .w3-container.w3-blue
-        h3 Introduza as suas credenciais:
-    form.w3-container(action='/login' method='POST')
-        label Username:
-        input.w3-input(type="text" name="username")
-        label Password:
-        input.w3-input(type="password" name="password")
-        input.w3-btn.w3-blue(type="submit" value="Enviar")
-    .w3-container.w3-blue
-        address Daniel Pereira e Ricardo Leal, PRI2020
+
+    .w3-container.w3-gray
+        h3 Login
+    .w3-container.w3-light-grey.w3-margin.w3-border
+        form.w3-container(action='/login' method='POST')
+            p
+            label Username:
+            input.w3-input(type="text" name="username")
+            p
+            label Password:
+            input.w3-input(type="password" name="password")
+            p
+            button.w3-button.w3-block.w3-margin-top.w3-margin-bottom.w3-gray(type="submit") Login
+            p
+    
+    .w3-container.w3-gray.w3-center
+        p
+            a.w3-margin-left(href='/registo') Registar
+        p

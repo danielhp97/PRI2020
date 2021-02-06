@@ -1,8 +1,10 @@
 extends layout
 
 block content
-  h1 Gestão de Tarefas
+  h1 Gestão de Recursos
   ul.w3-ul
+    li
+      a(href='/home') Home
     li
       a(href='/registo') Registo
     li
@@ -12,8 +14,13 @@ block content
     li
       a(href='/logout') Logout
     li
-      a(href='/recursos/upload') Upload de Recursos + Ficheiro
-    li
-      a(href='/novorecurso') Upload de Recurso
+      a(href='/upload') Novo Recurso + Upload
     li
       a(href='/listausers') Lista de Users
+    li
+      a(href='/navbar') Barra de Navegação
+
+    .w3-container.w3-gray.w3-center
+        p
+        a.w3-margin(href="/home") Voltar
+        p

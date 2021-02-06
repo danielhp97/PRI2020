@@ -2,13 +2,24 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios')
 var jwt_decode = require('jwt-decode')
+
 router.get('/', function(req, res) {
+  res.render('login-form');
+});
+
+router.get('/home', function(req, res) {
+  res.render('home');
+});
+
+//lista com rotas/views
+router.get('/index', function(req, res) {
   res.render('index');
 });
 
-router.get('/login', function(req, res) {
-  res.render('login-form');
-});
+//upload de recursos
+router.get('/upload', function(req,res) {
+  res.render('new-recurso')
+})
 
 //get pag registo
 router.get('/registo', function(req, res) {
@@ -23,9 +34,14 @@ router.get('/listausers', function(req, res) {
     .catch(e => res.render('error', {error: e}))
 });
 
-router.get('/novorecurso', function(req,res){
-  res.render('new-recurso')
+router.get('/repositorio', function(req, res) {
+  console.log('Info do pedido req.body: '+ JSON.stringify(req.body));
+  axios.get('http://localhost:8001/recursos/?token=' + req.cookies.token)
+    .then(dados => res.render('listaRecursos', {lista: dados.data}))
+    .catch(e => res.render('error', {error: e}))
 });
+
+
 /*
 router.get('/logout', function(req,res){
 
@@ -40,9 +56,9 @@ router.post('/login', function(req, res) {
         secure: false, // set to true if your using https
         httpOnly: true
       });
-      res.redirect('/')
+      res.redirect('/home')
     })
-    .catch(e => res.render('error', {error: e}))
+    .catch(e => res.render('Credenciais Inválidas', {error: e}))
 });
 
 /*

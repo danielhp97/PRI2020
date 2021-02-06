@@ -1,8 +1,7 @@
 var mongoose = require('mongoose')
 
 var recursoSchema = new mongoose.Schema({
-    id: String,
-    author: String,
+    author: mongoose.Schema.Types.ObjectId,
     title: String,
     subtitle: String,
     desc: String, //Descricao

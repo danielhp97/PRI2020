@@ -29,7 +29,7 @@ router.post('/registo', function(req, res){
                                            //ou do req body
   axios.post('http://localhost:8002/users', usr) //dá post no server da autenticacao porque na precisa de token
     .then(res.redirect('/'))  
-    .catch(e => res.render('error', {error: e}))
+    .catch(e => res.render('Erro no Registo', {error: e}))
 });
 
 

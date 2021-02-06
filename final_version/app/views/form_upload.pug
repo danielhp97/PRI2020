@@ -7,10 +7,18 @@ html
       .w3-container.w3-blue
         h3 Criar Recurso: (zip only)
         form.w3.container(action='/recursos/inserir' method='POST', enctype='multipart/form-data')
-          p      
+          p
           label.w3-bold Tipo
-          input.w3-input.w3-border(type="text", name="tipo")
-          p         
+            select.w3-input.w3-border(name="type")
+              option(value="livro") Livro
+              option(value="artigo") Artigo
+              option(value="aplicação") Aplicação
+              option(value="monografia") Monografia
+              option(value="relatorio") Relatório
+              option(value="trabalho") Trabalho
+              option(value="tese") Tese
+              option(value="outro" selected) Outro
+          p
           label.w3-bold Titulo
           input.w3-input.w3-border(type="text", name="titulo")
           p
@@ -18,7 +26,7 @@ html
           input.w3-input.w3-border(type="file", name="myFile")
 
           p
-          button.btn.btn-primary(type='submit') Submit    
+          button.btn.btn-primary(type='submit') Submit
       .w3-container.w3-blue.w3-center
         p
         a.w3-margin(href="/") Voltar a homepage

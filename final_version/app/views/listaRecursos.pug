@@ -1,27 +1,57 @@
 extends layout
 
 block content
-  h1 Lista de Recursos
-  .w3-container.w3-margin
-    table.w3-table-all
-        tr
-            th Titulo
-            th Subtítulo
-            th Descrição
-            th Tipo
-            th Ano
-            th UC
-            th Visibilidade
-            th Data Criação
-            th Rank
-        each r in lista
+    nav.navbar.navbar-expand-lg.navbar-dark.w3-dark-grey
+        a.navbar-brand(href='/home') Feed/Home
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        .collapse.navbar-collapse(id='navbarSupportedContent')
+            ul.navbar-nav.mr-auto
+                li.nav-item.active
+                    a.nav-link(href='/repositorio') Repositório
+                li.nav-item
+                    a.nav-link(href='/meusrecursos') Meus Recursos
+            ul.navbar-nav.mr-auto
+                li.nav-item.active
+                    a.nav-link(href='/index') VIEWS/ROTAS
+
+            ul.navbar-nav.float-right
+                li.nav-item
+                    a.nav-link(href='/logout') Logout
+                li.nav-item
+                    a.nav-link(href='/conta') Conta
+                li.nav-item
+                    a.nav-link(href='/admin') Admin
+
+    .w3-container.w3-margin
+        table.w3-table-all
             tr
-                td= r.title
-                td= r.subtitle
-                td= r.desc
-                td= r.type
-                td= r.year
-                td= r.uc
-                td= r.visibility
-                td= r.dateCreation
-                td= r.rank
+                // th ID
+                th Autor
+                th Titulo
+                th Subtítulo
+                th Descrição
+                th Tipo
+                th Ano
+                th UC
+                th Visibilidade
+                th Data Criação
+                th Rank
+                th Download
+            each r in lista
+                tr
+                    // td= r._id
+                    td= r.author
+                    td= r.title
+                    td= r.subtitle
+                    td= r.desc
+                    td= r.type
+                    td= r.year
+                    td= r.uc
+                    td= r.visibility
+                    td= r.dateCreation
+                    td= r.rank
+                    td= href="/recursos/upload/#{r._id}"
+                    td.w3-center
+                        a(href="/recursos/"+r._id) Ver
+                            //button.w3-button.w3-teal(onclick="verRecurso('" + r._id + "')" style="margin-right: 5%") Ver Informação

@@ -36,6 +36,7 @@ router.post('/login', passport.authenticate('user'), function(req, res){
   jwt.sign({
             username: req.user.username,
             level: req.user.level,
+            id: req.user._id,
             sub: 'Login Geral'}, "segredo",
             function(e,token) {
               if(e) res.status(500).jsonp({error: "Erro a gerar token: " + e})

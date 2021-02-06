@@ -5,6 +5,7 @@ block content
   .w3-container.w3-margin
     table.w3-table-all
         tr
+            th ID User
             th Name
             th Username
             th Email
@@ -15,6 +16,7 @@ block content
             th Data Ultimo Acesso
         each u in lista
             tr
+                td= u._id
                 td= u.name
                 td= u.username
                 td= u.email
@@ -23,4 +25,5 @@ block content
                 td= u.level
                 td= u.dateRegister
                 td= u.dateLastAcess
-
+    .w3-card-2
+    a(href="/") Voltar
