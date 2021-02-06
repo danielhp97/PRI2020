@@ -104,18 +104,10 @@ router.post('/inserir', upload.single('myFile'), function(req,res){
 });
 
 router.get('/download/:filename', function(req, res) {
-axios.get('http://localhost:8001/recursos/download/' + req.params.filename + '?token=' + req.cookies.token)
- .then(res.download(path.join(__dirname, '..', 'public', 'filestore') + '/' + req.params.filename)) //res.download(__dirname + '/public/fileStore/' + req.body.downloadName)
- .catch(res.send('Could not find the file'))
+  axios.get('http://localhost:8001/recursos/download/' + req.params.filename + '?token=' + req.cookies.token)
+   .then(res.download(path.join(__dirname, '..', 'public', 'uploads') + '/' + req.params.filename)) //res.download(__dirname + '/public/fileStore/' + req.body.downloadName)
+   .catch(e => res.render('error', {error: e}))
 })
-// axios.get('http://localhost:8001/recursos/' + req.params.filename + '?token=' + req.cookies.token)
-//  .then(console.log(__dirname + '/public/fileStore/' + req.body.downloadName)) //res.download(__dirname + '/public/fileStore/' + req.body.downloadName)
-//  .catch(res.render('Could not find the file'))
-//falta aqui uma página de "manage" tipo os dos users, que dê para alterar e apagar recursos.
-
-//router.post
-
-//router.put
 
 
 module.exports = router;
