@@ -54,67 +54,6 @@ router.get('/:id', function(req, res) {
 //     .catch(e => res.render('error', {error: e}))
 // })
 
-router.post('/inserir', upload.single('myFile'), function(req,res){
-  var check = 0;
-  if(req.file.path === undefined) { res.status(304).send('Please fill all of the form')}
-  var zip = new admZip(req.file.path);
-  var total_entries=zip.getEntries();
-  total_entries.forEach(item => {
-    if(item.name==='metadata.xml') {check = 1};
-  });
-  if(check===1){
-    total_entries.forEach(item => {
-      if(item.name==='metadata.xml'){
-        var content = item.getData().toString('utf8');
-        libxml.loadDtds(['./public/dtd/recurso.dtd']); //set list of dtd's to compare to
-        libxml.loadXmlFromString(content); // load content from metadata.xml
-        let xmlIsValid = libxml.validateAgainstDtds(); // variable to check comparison
-        if(xmlIsValid != false) {
-          xml2js.parseString(content, (err, result) => {
-            if(err) {
-              throw err;
-            }
-            const json = JSON.stringify(result);
-
-            var rcs = {
-                title: req.body.title,
-                subtitle: req.body.subtitle,
-                desc : req.body.desc,
-                type: req.body.type,
-                year: req.body.year,
-                uc: req.body.uc,
-                visibility: req.body.visibility,
-                dateCreation: new Date().toISOString().slice(0,10)
-            };
-            console.log(req.body)
-            console.log(req.body.title)
-
-            var json_metadata = JSON.stringify(result.recurso)
-            axios.post('http://localhost:8001/recursos?token=' + req.cookies.token, rcs)
-              .then(res.redirect('/'))
-              .catch(e => res.render('error', {error: e}))
-         });
-          //console.log('XML is valid!: Zip ' + req.file.path + ' was correctly introduced.\n' + 'Validated with ' + item.name);
-          //jsonp(req.file);
-        } else {
-          console.log('Error on manifesto: Please correct the manifesto');
-          res.status(401).jsonp(req.file);
-          res.end();
-        }
-      }
-   });
- } else {
-  console.log('No metadata: Please add/rename metadata.xml');
-  res.status(401).send('No metadata: Please add/rename metadata.xml');
-  res.end();
- }
-});
-
-
-//upload de recursos
-router.get('/upload', function(req,res) {
-  res.render('new-recurso')
-})
 
 router.post('/inserir', upload.single('myFile'), function(req,res){
   var check = 0;

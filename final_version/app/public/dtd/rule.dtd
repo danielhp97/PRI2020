@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!ELEMENT file (head,body)>
-<!ELEMENT head (h1)>
-<!ELEMENT h1 (#PCDATA)>
-<!ELEMENT body (p)>
-<!ELEMENT p (#PCDATA)>
