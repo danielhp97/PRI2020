@@ -9,7 +9,22 @@ const Libxml = require('node-libxml');
 let libxml = new Libxml();
 
 var multer = require('multer')
-var upload = multer({dest: 'uploads/',
+
+var storage = multer.diskStorage({
+    destination: function (request, file, callback) {
+        callback(null, './public/uploads/');
+    },
+    filename: function (request, file, callback) {
+        if (request.recurso) {
+           // TODO: consider adding file type extension
+           return callback(null, request.recurso.titulo.toString());
+        }
+        // fallback to the original name if you don't have a book attached to the request yet.
+        return callback(null, file.originalname)
+    }
+});
+
+var upload = multer({dest: './public/uploads/',
   fileFilter: (req, file, cb) => {
     if (file.mimetype == "application/zip") {
       cb(null, true);
@@ -17,7 +32,7 @@ var upload = multer({dest: 'uploads/',
       cb(null, false);
       return cb(new Error('Only .zip files are allowed!'));
     }
-  }
+  }, storage: storage
 })
 
 //get todos os recursos
@@ -94,7 +109,10 @@ router.get('/upload', function(req,res) {
    res.end();
   }
 });
-//ver o rec. upload, se o sistema de validação continua no API (como está agora, lá comentado) ou passa para aqui
+
+router.get('/download/:filename', function(req, res) {
+    res.download(__dirname + '/public/fileStore/' + req.params.filename)
+})
 
 //falta aqui uma página de "manage" tipo os dos users, que dê para alterar e apagar recursos.
 

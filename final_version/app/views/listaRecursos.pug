@@ -14,6 +14,7 @@ block content
             th Visibilidade
             th Data Criação
             th Rank
+            th Download
         each r in lista
             tr
                 td= r.title
@@ -25,3 +26,4 @@ block content
                 td= r.visibility
                 td= r.dateCreation
                 td= r.rank
+                td= href="/recursos/upload/#{r.id}"
