@@ -13,7 +13,7 @@ router.get('/logout', function(req, res){
         res.status(200);
         //res.redirect('/');
     } else {
-        console.log('Destroy session error: ', err)
+        e => res.status(500).jsonp({error: e})
     }
   });
 });

@@ -48,6 +48,12 @@ router.post('/login', function(req, res) {
     .catch(e => res.send('Crendenciais Invalidas'))
 });
 
+router.get('/logout', function(req, res) {
+  axios.get('http://localhost:8002/users/logout')
+    .then(res.redirect('/'))
+    .catch(e => res.send(e))
+});
+
 
 router.get('/recursos/upload', function(req,res) {
   res.render('new-recurso')
