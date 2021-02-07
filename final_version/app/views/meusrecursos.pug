@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  nav.navbar.navbar-expand-lg.navbar-dark.w3-dark-grey
+    a.navbar-brand(href='/home') Feed/Home
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+    .collapse.navbar-collapse(id='navbarSupportedContent')
+        ul.navbar-nav.mr-auto
+            li.nav-item.active
+                a.nav-link(href='/recursos/') Repositório
+            li.nav-item
+                a.nav-link(href='/produtor') Meus Recursos
+        ul.navbar-nav.mr-auto
+            li.nav-item.active
+                a.nav-link(href='/index') VIEWS/ROTAS
+
+        ul.navbar-nav.float-right
+            li.nav-item
+                a.nav-link(href='/logout') Logout
+            li.nav-item
+                a.nav-linka(href='/users/detalhe/') Conta
+            li.nav-item
+                a.nav-link(href='/users/manage') Admin
+
+  .w3-container.w3-light-grey.w3-margin.w3-border
+      p
+      a.w3-margin(href="/recursos/#{lista.id}") Lista dos teus Recursos
+      p
+  .w3-container.w3-light-grey.w3-center
+        a.w3-margin(href="/recursos/upload") Novo Recurso
+
+  .w3-container.w3-gray.w3-center
+    p
+    a.w3-margin(href="/home") Voltar a homepage
+    p

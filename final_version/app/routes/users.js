@@ -30,7 +30,7 @@ router.post('/registo', function(req, res){
   }
                                            //ou do req body
   axios.post('http://localhost:8002/users', usr) //dá post no server da autenticacao porque na precisa de token
-    .then(res.redirect('/'))
+    .then(res.redirect('/home'))
     .catch(e => res.render('Erro no Registo', {error: e}))
 });
 
@@ -49,17 +49,14 @@ function(req, res, next) {
     .catch(e => res.render('error', {error: e}))
 });
 
-// criar/apagar users - não acabada, precisa de dar render como está a ser feita no upload de ficheiros
+
 router.get('/manage',
 function(req, res, next) {
-  var dados = jwt_decode(req.cookies.token).tipo;
+  var dados = jwt_decode(req.cookies.token).level;
   if (dados != 'admin') res.status(403).send('Access denied.')
   next()
-}, function(req, res) {
-  console.log(JSON.stringify(req.cookies));
-  axios.get('http://localhost:8001/users?token=' + req.cookies.token)
-    .then(dados => res.render('listaUsers', {lista: dados.data}))
-    .catch(e => res.render('error', {error: e}))
+}, function(req, res, next) {
+  res.render('admin')
 });
 //além disso, faltam aqui as rotas de post/put para comunicar com a API de forma a alterar os dados dos users (abaixo)
 
@@ -70,14 +67,39 @@ function(req, res, next) {
 //router.delete('/manage'),
 
 // pagina individual do user ( não tá funcional!)
-router.get('(\/[A-Z]+[0-9]+)', (req, res) => {
-    var idUser = req.url.split("/")[1]
-    console.log(idUser);
-    axios.get('http://localhost:8001/users/' + idUser + '?token=' + req.cookies.token)
+router.get('/detalhe', (req, res) => {
+    var user_id = jwt_decode(req.cookies.token).id
+    console.log(user_id);
+    axios.get('http://localhost:8001/users/detalhe/' + user_id + '?token=' + req.cookies.token)
       .then(dados => res.render('userDetalhado', {lista: dados.data}))
       .catch(e => res.render('error', {error: e}))
 })
 
 
+//apagar user
+router.delete('/apagar/:idUser',function(req, res, next) {
+ var dados = jwt_decode(req.cookies.token).level;
+ var user_id = jwt_decode(req.cookies.token).id;
+ console.log(req.params.idUser)
+ if (dados != 'admin' ||  (dados != 'admin' && user_id != req.params.idUser)) res.status(403).send('Access denied.')
+ next()
+}, function(req, res) => {
+  axios.delete('http://localhost:8001/users/' + req.params.idUser + '?token=' + req.cookie.token)
+    .then(res.redirect('/admin'))
+    .catch(e => res.render('error', {error: e}))
+})
+
+//alterar user (put request)
+router.put('/alterar/:idUser',function(req, res, next) {
+ var dados = jwt_decode(req.cookies.token).level;
+ var user_id = jwt_decode(req.cookies.token).id;
+ console.log(req.params.idUser)
+ if (dados != 'admin' ||  (dados != 'admin' && user_id != req.params.idUser)) res.status(403).send('Access denied.')
+ next()
+}, function (req, res) => {
+  axios.put('http://localhost:8001/users/' + req.params.idUser + '?token=' + req.cookie.token)
+    .then(res.redirect('/admin'))
+    .catch(e => res.render('error', {error: e}))
+})
 
 module.exports = router;

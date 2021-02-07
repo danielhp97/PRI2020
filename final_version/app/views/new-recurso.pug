@@ -1,8 +1,8 @@
 extends layout
 
 block content
-  .w3-container.w3-margin.w3-border.w3-indigo
-    .w3-container.w3-indigo
+  .w3-container.w3-margin.w3-border.w3-ligh-grey
+    .w3-container.w3-grey
       h3 Criar Recurso
       form.w3.container(action='/recursos/inserir' method='POST', enctype='multipart/form-data')
         p
@@ -58,7 +58,7 @@ block content
         button.btn.btn-primary(type='submit') Submit
 
 
-    .w3-container.w3-blue-grey.w3-center
+    .w3-container.w3-dark-grey.w3-center
       p
-      a.w3-margin(href="/") Voltar a homepage
+      a.w3-margin(href="/home") Voltar a homepage
       p

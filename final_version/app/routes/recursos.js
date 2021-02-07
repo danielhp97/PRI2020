@@ -57,18 +57,18 @@ router.post('/inserir', upload.single('myFile'), function(req,res){
     if(item.name==='metadata.xml') {check = 1};
   });
   if(check===1){
-    total_entries.forEach(item => {
-      if(item.name==='metadata.xml'){
-        var content = item.getData().toString('utf8');
-        libxml.loadDtds(['./public/dtd/recurso.dtd']); //set list of dtd's to compare to
-        libxml.loadXmlFromString(content); // load content from metadata.xml
-        let xmlIsValid = libxml.validateAgainstDtds(); // variable to check comparison
-        if(xmlIsValid != false) {
-          xml2js.parseString(content, (err, result) => {
-            if(err) {
-              throw err;
-            }
-            const json = JSON.stringify(result);
+    //total_entries.forEach(item => {
+      // if(item.name==='metadata.xml'){
+      //   var content = item.getData().toString('utf8');
+      //   libxml.loadDtds(['./public/dtd/recurso.dtd']); //set list of dtd's to compare to
+      //   libxml.loadXmlFromString(content); // load content from metadata.xml
+      //   let xmlIsValid = libxml.validateAgainstDtds(); // variable to check comparison
+      //   if(xmlIsValid != false) {
+      //     xml2js.parseString(content, (err, result) => {
+      //       if(err) {
+      //         throw err;
+      //       }
+      //       const json = JSON.stringify(result);
 
             var rcs = {
                 author: jwt_decode(req.cookies.token).id,
@@ -83,20 +83,20 @@ router.post('/inserir', upload.single('myFile'), function(req,res){
                 downloadName: req.file.filename
             };
 
-            var json_metadata = JSON.stringify(result.recurso)
+            //var json_metadata = JSON.stringify(result.recurso)
             axios.post('http://localhost:8001/recursos?token=' + req.cookies.token, rcs)
-              .then(res.redirect('/'))
+              .then(res.redirect('/home'))
               .catch(e => res.render('error', {error: e}))
-         });
+         //});
           //console.log('XML is valid!: Zip ' + req.file.path + ' was correctly introduced.\n' + 'Validated with ' + item.name);
           //jsonp(req.file);
-        } else {
-          console.log('Error on manifesto: Please correct the manifesto');
-          res.status(401).jsonp(req.file);
-          res.end();
-        }
-      }
-   });
+        //} else {
+        //  console.log('Error on manifesto: Please correct the manifesto');
+        //  res.status(401).jsonp(req.file);
+        //  res.end();
+        //}
+      //}
+   //});
  } else {
   console.log('No metadata: Please add/rename metadata.xml');
   res.status(401).send('No metadata: Please add/rename metadata.xml');

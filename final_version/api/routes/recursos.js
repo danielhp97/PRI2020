@@ -1,21 +1,44 @@
-// Roteador do servidor API para o problema da gestão de tarefas
+// Roteador do servidor API para o problema
 var express = require('express');
 var router = express.Router();
 const Recurso = require('../controllers/recursos')
-const User = require('../controllers/users');
 //var admZip = require('adm-zip')
 //const Libxml = require('node-libxml');
 //let libxml = new Libxml();
 
 // ------------------------------------------------ recurso
-// Listar todas as tarefas
+// Listar todas
 router.get('/', (req, res) => {
   Recurso.listar()
     .then(dados => res.status(200).jsonp(dados) )
     .catch(e => res.status(500).jsonp({error: e}))
 });
 
-// Consultar uma tarefa
+router.get('/istonaoenada' function (req, res, next) {
+  if (req.query.uc && req.query.year) {
+    User.listbyNameCourse(req.query.name, req.query.course)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else if (req.query.name) {
+    User.listbyName(req.query.name)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else if (req.query.course) {
+    User.listbyCourse(req.query.course)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else {
+    User.list()
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+
+
+
+// Consultar uma
 router.get('/:id', function(req, res) {
   Recurso.consultar(req.params.id)
     .then(dados => res.status(200).jsonp(dados))
@@ -29,34 +52,24 @@ router.get('/download/:downloadName', function(req, res) {
     .catch(e => res.status(500).jsonp({error: e}))
 });
 
-// Inserir uma tarefa
+// Inserir uma
 router.post('/', (req, res) => {
   console.log('Info do pedido req.body: '+ JSON.stringify(req.body));
-  //var r = {
-    //id: String, gerar id?
-  //  tipo: req.body.Tipo,
-  //  titulo: req.body.Titulo,
-    //dataRegisto: req.body.DataRegisto,
-  //  visiblidade: req.body.Visiblidade
-    //storeLocation: String
-  //}
   Recurso.inserir(req.body)
     .then(dados => res.status(201).jsonp({dados:dados}))
     .catch(e => res.status(500).jsonp({error: e}))
-      //.then(dados => res.redirect('/inserir')) //gerar janela de resposta RECURSO INSERIDO
-      //.catch(e => res.render('error', {error: e}))
 })
 
 
 
-// Alterar uma tarefa
+// Alterar uma
 router.put('/', function(req, res){
   Recurso.alterar(req.body)
     .then(dados => res.status(201).jsonp({dados: dados}))
     .catch(e => res.status(500).jsonp({error: e}))
 })
 
-// Remover uma tarefa
+// Remover uma
 router.delete('/:id', function(req, res) {
   Recurso.remover(req.params.id)
     .then(dados => res.status(200).jsonp(dados))

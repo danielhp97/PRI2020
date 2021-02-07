@@ -18,16 +18,16 @@ block content
             ul.navbar-nav.float-right
                 li.nav-item
                     a.nav-link(href='/logout') Logout
+                    li.nav-item
+                        a.nav-linka(href='/users/detalhe/+u.username') Conta
                 li.nav-item
-                    a.nav-link(href='/conta') Conta
-                li.nav-item
-                    a.nav-link(href='/admin') Admin
+                    a.nav-link(href='/users/manage') Admin
 
     .w3-container.w3-margin
         table.w3-table-all
             tr
                 // th ID
-                th Autor
+                th Autor: lista.author
                 th Titulo
                 th Subtítulo
                 th Descrição
@@ -53,6 +53,6 @@ block content
                     td= r.rank
                     td.w3-center
                         a(href="/recursos/download/"+r.downloadName) Download
-                    td.w3-center
-                        a(href="/recursos/"+r._id) Ver
-                            //button.w3-button.w3-teal(onclick="verRecurso('" + r._id + "')" style="margin-right: 5%") Ver Informação
+                        td.w3-center
+                            a(href="/recursos/"+r._id) Ver
+                                //button.w3-button.w3-teal(onclick="verRecurso('" + r._id + "')" style="margin-right: 5%") Ver Informação

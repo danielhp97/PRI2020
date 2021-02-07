@@ -31,19 +31,9 @@ router.get('/users/lista', function(req, res) {
     .catch(e => res.render('error', {error: e}))
 });
 
-// router.get('/recursos/repositorio', function(req, res) {
-//   console.log('Info do pedido req.body: '+ JSON.stringify(req.body));
-//   axios.get('http://localhost:8001/recursos/?token=' + req.cookies.token)
-//     .then(dados => res.render('listaRecursos', {lista: dados.data}))
-//     .catch(e => res.render('error', {error: e}))
-// });
-
-
-/*
-router.get('/logout', function(req,res){
-
-})
-*/
+router.get('/produtor', function(req,res) {
+  res.render('meusrecursos')
+});
 
 router.post('/login', function(req, res) {
   axios.post('http://localhost:8002/users/login', req.body)
@@ -58,19 +48,12 @@ router.post('/login', function(req, res) {
     .catch(e => res.send('Crendenciais Invalidas'))
 });
 
-/*
-router.get('/recursos',
-function(req, res, next) {
-  var dados = jwt_decode(req.cookies.token).tipo;
-  if (dados != 'admin') res.status(403).send('Access denied.')
-  next()
-},
-  function(req, res) {
-  axios.get('http://localhost:8001/?token=' + req.cookies.token)
-    .then(dados => res.render('listaRecursos', {lista: dados.data}))
-    .catch(e => res.render('error', {error: e}))
+router.get('/logout', function(req, res) {
+  axios.get('http://localhost:8002/users/logout')
+    .then(res.redirect('/'))
+    .catch(e => res.send(e))
 });
-*/
+
 
 router.get('/recursos/upload', function(req,res) {
   res.render('new-recurso')
