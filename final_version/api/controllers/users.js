@@ -14,7 +14,7 @@ module.exports.listar = () => {
 
 module.exports.listarFiliationLevel = (f,l) => {
     return UserL
-        .find({type: t, uc:u})
+        .find({filiation: g, level: l})
         .exec()
 }
 
