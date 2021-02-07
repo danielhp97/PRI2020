@@ -13,7 +13,7 @@ module.exports.listar = () => {
 
 module.exports.listarTypeUcYear = (t,u,y) => {
     return Recurso
-        .find({type: t, uc:u, year:y})
+        .find({type: t, uc: u, year: y})
         .exec()
 }
 

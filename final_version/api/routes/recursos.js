@@ -29,7 +29,28 @@ router.get('/', (req, res) => {
       .then(data => res.jsonp(data))
       .catch(error => res.status(500).jsonp(error))
   }
-*/
+  else if (req.query.uc) {
+    Recurso.listarUcYear(req.query.uc)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else if (req.query.year) {
+    Recurso.listarUcYear(req.query.year)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else if (req.query.type) {
+    Recurso.listarUcYear(req.query.type)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else {
+    Recurso.listar()
+      .then(dados => res.status(200).jsonp(dados))
+      .catch(e => res.status(500).jsonp({error: e}))
+  }
+})
+
 
 
 // Consultar uma
