@@ -14,6 +14,30 @@ router.get('/', (req, res) => {
     .catch(e => res.status(500).jsonp({error: e}))
 });
 
+router.get('/istonaoenada' function (req, res, next) {
+  if (req.query.uc && req.query.year) {
+    User.listbyNameCourse(req.query.name, req.query.course)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else if (req.query.name) {
+    User.listbyName(req.query.name)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else if (req.query.course) {
+    User.listbyCourse(req.query.course)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else {
+    User.list()
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+
+
+
 // Consultar uma
 router.get('/:id', function(req, res) {
   Recurso.consultar(req.params.id)

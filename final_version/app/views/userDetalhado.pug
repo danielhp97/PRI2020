@@ -27,17 +27,17 @@ block content
     h1 Detalhes do User Atual
   .w3-container.w3-margin
         tr
-            p Name: u.name
-            p Username: u.username
-            p Level: u.level
-            p Email: u.email
-            p Filiation: u.filiation
-            p Register Date: u.dateRegister
-            p Last Access Date: u.dateLastAcess
+            p Name: #{lista.name}
+            p Username:#{lista.username}
+            p Level: #{lista.level}
+            p Email: #{lista.email}
+            p Filiation: #{lista.filiation}
+            p Register Date: #{lista.dateRegister}
+            p Last Access Date: #{lista.dateLastAcess}
 
   .w3-container.w3-ligh-grey
       h3 Alterar Informações
-      form.w3.container(action='/users/alterar/#{u._id}' method='PUT', enctype='multipart/form-data')
+      form.w3.container(action="/users/alterar/+u.id" method='PUT', enctype='multipart/form-data')
         p
         label.w3-bold Name
         input.w3-input.w3-border(type="text", name="name")

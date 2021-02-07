@@ -69,12 +69,6 @@ app.use(cookieParser('O meu segredo'));
 app.use(passport.initialize());
 app.use(passport.session());
 
-//check cookies: middleware
-app.use(function(req, res, next){
-  console.log('Signed Cookies: ', JSON.stringify(req.signedCookies))
-  console.log('Session: ', JSON.stringify(req.session))
-  next()
-})
 
 app.use('/users', usersRouter);
 

@@ -15,8 +15,8 @@ module.exports.consultar = id => {
         .exec()
 }
 
-module.exports.inserir = t => {
-    var novo = new UserL(t)
+module.exports.inserir = u => {
+    var novo = new UserL(u)
     return novo.save()
 }
 
@@ -24,7 +24,7 @@ module.exports.remover = function(id){
     return UserL.deleteOne({_id: id})
 }
 
-module.exports.alterar = function(t){
-    return UserL.findByIdAndUpdate({_id: t._id}, t, {new: true})
+module.exports.alterar = function(u){
+    return UserL.findByIdAndUpdate({_id: u._id}, u, {new: true})
 }
 

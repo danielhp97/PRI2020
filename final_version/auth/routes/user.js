@@ -4,12 +4,12 @@ var User = require('../controllers/user');
 var passport = require('passport');
 var jwt = require('jsonwebtoken');
 
+
 router.get('/logout', function(req, res){
   req.logout();
-  req.session.destroy(function (err) {
+  req.cookie.token.destroy(function (err) {
     if (!err) {
-      console.log('Sessão destruida: ', err)
-
+      console.log('Token destruida: ', err)
         res.status(200);
         //res.redirect('/');
     } else {
