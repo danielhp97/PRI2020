@@ -16,6 +16,21 @@ router.get('/index', function(req, res) {
   res.render('index');
 });
 
+router.get('/repositorio', function(req, res) {
+  axios.get('http://localhost:8001/recursos?token=' + req.cookies.token)
+  .then(dados => res.render('listaRecursos', {lista: dados.data}))
+  .catch(e => res.render('error', {error: e}))
+})
+
+router.get('/meusrecursos', function(req, res) {
+  axios.get('http://localhost:8001/recursos?token=' + req.cookies.token)
+  .then(dados => res.render('listaRecursos', {lista: dados.data}))
+  .catch(e => res.render('error', {error: e}))
+})
+
+router.get('/index', function(req, res) {
+  res.render('index');
+});
 
 
 //get pag registo
@@ -31,9 +46,6 @@ router.get('/users/lista', function(req, res) {
     .catch(e => res.render('error', {error: e}))
 });
 
-router.get('/produtor', function(req,res) {
-  res.render('meusrecursos')
-});
 
 router.post('/login', function(req, res) {
   axios.post('http://localhost:8002/users/login', req.body)
@@ -45,7 +57,7 @@ router.post('/login', function(req, res) {
       });
       res.redirect('/home')
     })
-    .catch(e => res.send('Crendenciais Invalidas'))
+    .catch(e => res.render('login-error', {message: 'Credenciais Inválidas', error: e}))
 });
 
 router.get('/logout', function(req, res) {

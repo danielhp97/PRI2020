@@ -30,8 +30,8 @@ router.post('/registo', function(req, res){
   }
                                            //ou do req body
   axios.post('http://localhost:8002/users', usr) //dá post no server da autenticacao porque na precisa de token
-    .then(res.redirect('/home'))
-    .catch(e => res.render('Erro no Registo', {error: e}))
+    .then(res.redirect('/'))
+    .catch(e => res.render('registo-error', {message: 'Erro no Registo, contacte o suporte', error: e}))
 });
 
 
@@ -75,7 +75,7 @@ router.get('/detalhe', (req, res) => {
       .catch(e => res.render('error', {error: e}))
 })
 
-
+/*
 //apagar user
 router.delete('/apagar/:idUser',function(req, res, next) {
  var dados = jwt_decode(req.cookies.token).level;
@@ -89,6 +89,7 @@ router.delete('/apagar/:idUser',function(req, res, next) {
     .catch(e => res.render('error', {error: e}))
 })
 
+
 //alterar user (put request)
 router.put('/alterar/:idUser',function(req, res, next) {
  var dados = jwt_decode(req.cookies.token).level;
@@ -101,5 +102,5 @@ router.put('/alterar/:idUser',function(req, res, next) {
     .then(res.redirect('/admin'))
     .catch(e => res.render('error', {error: e}))
 })
-
+*/
 module.exports = router;

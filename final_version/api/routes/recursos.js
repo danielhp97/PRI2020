@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
     .catch(e => res.status(500).jsonp({error: e}))
 });
 
+/*
 router.get('/istonaoenada' function (req, res, next) {
   if (req.query.uc && req.query.year) {
     User.listbyNameCourse(req.query.name, req.query.course)
@@ -35,7 +36,7 @@ router.get('/istonaoenada' function (req, res, next) {
       .then(data => res.jsonp(data))
       .catch(error => res.status(500).jsonp(error))
   }
-
+*/
 
 
 // Consultar uma
