@@ -1,29 +1,19 @@
-// Roteador do servidor API para o problema
+// Roteador do servidor API para o problema da gestão de tarefas
 var express = require('express');
 var router = express.Router();
-const Recurso = require('../controllers/recursos')
-//var admZip = require('adm-zip')
-//const Libxml = require('node-libxml');
-//let libxml = new Libxml();
+const Poste = require('../controllers/postes');
 
-// ------------------------------------------------ recurso
+
 // Listar todas
 router.get('/', (req, res) => {
-  Recurso.listar()
+  Poste.listar()
     .then(dados => res.status(200).jsonp(dados) )
     .catch(e => res.status(500).jsonp({error: e}))
 });
 
 // Consultar uma
 router.get('/:id', function(req, res) {
-  Recurso.consultar(req.params.id)
-    .then(dados => res.status(200).jsonp(dados))
-    .catch(e => res.status(500).jsonp({error: e}))
-});
-
-// Consultar download
-router.get('/download/:downloadName', function(req, res) {
-  Recurso.consultarDownload(req.params.downloadName)
+  Poste.consultar(req.params.id)
     .then(dados => res.status(200).jsonp(dados))
     .catch(e => res.status(500).jsonp({error: e}))
 });
@@ -31,7 +21,7 @@ router.get('/download/:downloadName', function(req, res) {
 // Inserir uma
 router.post('/', (req, res) => {
   console.log('Info do pedido req.body: '+ JSON.stringify(req.body));
-  Recurso.inserir(req.body)
+  Poste.inserir(req.body)
     .then(dados => res.status(201).jsonp({dados:dados}))
     .catch(e => res.status(500).jsonp({error: e}))
 })
@@ -40,14 +30,14 @@ router.post('/', (req, res) => {
 
 // Alterar uma
 router.put('/', function(req, res){
-  Recurso.alterar(req.body)
+  Poste.alterar(req.body)
     .then(dados => res.status(201).jsonp({dados: dados}))
     .catch(e => res.status(500).jsonp({error: e}))
 })
 
 // Remover uma
 router.delete('/:id', function(req, res) {
-  Recurso.remover(req.params.id)
+  Poste.remover(req.params.id)
     .then(dados => res.status(200).jsonp(dados))
     .catch(e => res.status(500).jsonp({error: e}))
 });

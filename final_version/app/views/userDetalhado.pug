@@ -1,8 +1,66 @@
 extends layout
 
 block content
-  h1 User
+  nav.navbar.navbar-expand-lg.navbar-dark.w3-dark-grey
+    a.navbar-brand(href='/home') Feed/Home
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+    .collapse.navbar-collapse(id='navbarSupportedContent')
+        ul.navbar-nav.mr-auto
+            li.nav-item.active
+                a.nav-link(href='/recursos/') Repositório
+            li.nav-item
+                a.nav-link(href='/produtor') Meus Recursos
+        ul.navbar-nav.mr-auto
+            li.nav-item.active
+                a.nav-link(href='/index') VIEWS/ROTAS
+
+        ul.navbar-nav.float-right
+            li.nav-item
+                a.nav-link(href='/logout') Logout
+            li.nav-item
+                a.nav-linka(href='/users/detalhe/') Conta
+            li.nav-item
+                a.nav-link(href='/users/manage') Admin
+
+  .w3-container.w3-center
+    h1 Detalhes do User Atual
   .w3-container.w3-margin
         tr
+            p Name: u.name
             p Username: u.username
-            p Tipo: u.tipo
+            p Level: u.level
+            p Email: u.email
+            p Filiation: u.filiation
+            p Register Date: u.dateRegister
+            p Last Access Date: u.dateLastAcess
+
+  .w3-container.w3-ligh-grey
+      h3 Alterar Informações
+      form.w3.container(action='/users/alterar/#{u._id}' method='PUT', enctype='multipart/form-data')
+        p
+        label.w3-bold Name
+        input.w3-input.w3-border(type="text", name="name")
+        p
+        label.w3-bold Username
+        input.w3-input.w3-border(type="text", name="username")
+        p
+        label.w3-bold Email
+        input.w3-input.w3-border(type="text", name="email")
+        p
+        label.w3-bold Password
+        input.w3-input.w3-border(type="text", name="password")
+        p
+        label.w3-bold Filiation
+          select.w3-input.w3-border(name="filiation")
+            option(value="estudante") Estudante
+            option(value="professor") Professor
+        p
+        button.btn.btn-primary(type='submit') Submit
+
+
+
+  .w3-container.w3-gray.w3-center
+    p
+    a.w3-margin(href="/home") Voltar a homepage
+    p
