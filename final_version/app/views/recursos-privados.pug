@@ -8,9 +8,9 @@ block content
     .collapse.navbar-collapse(id='navbarSupportedContent')
         ul.navbar-nav.mr-auto
             li.nav-item.active
-                a.nav-link(href='/recursos/') Repositório
+                a.nav-link(href='/repositorio') Repositório
             li.nav-item
-                a.nav-link(href='/produtor') Meus Recursos
+                a.nav-link(href='/recursosprivados') Recursos Privados
         ul.navbar-nav.mr-auto
             li.nav-item.active
                 a.nav-link(href='/index') VIEWS/ROTAS
@@ -19,16 +19,21 @@ block content
             li.nav-item
                 a.nav-link(href='/logout') Logout
             li.nav-item
-                a.nav-linka(href='/users/detalhe/') Conta
+                a.nav-link(href='/conta') Conta
             li.nav-item
-                a.nav-link(href='/users/manage') Admin
+                a.nav-link(href='/admin') Admin
+
+    
 
   .w3-container.w3-light-grey.w3-margin.w3-border
       p
-      a.w3-margin(href="/recursos/#{lista.id}") Lista dos teus Recursos
+        a.w3-margin(href="/recursos/#{lista.id}") Lista dos teus Recursos
       p
-  .w3-container.w3-light-grey.w3-center
+  .w3-container.w3-light-grey.w3-margin.w3-boarder
+      p     
         a.w3-margin(href="/recursos/upload") Novo Recurso
+      p
+
 
   .w3-container.w3-gray.w3-center
     p

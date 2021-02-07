@@ -17,18 +17,31 @@ router.get('/index', function(req, res) {
 });
 
 router.get('/repositorio', function(req, res) {
-  console.log(' req url ' + req.url +'Info do pedido req.body: '+ JSON.stringify(req.body));
+  console.log(' req url ' + req.url +' Info do pedido req.body: '+ JSON.stringify(req.body));
   axios.get('http://localhost:8001/recursos?token=' + req.cookies.token)
   .then(dados => res.render('listaRecursos', {lista: dados.data}))
   .catch(e => res.render('error', {error: e}))
 })
 
-router.get('/meusrecursos', function(req, res) {
-  axios.get('http://localhost:8001/recursos?token=' + req.cookies.token)
-  .then(dados => res.render('listaRecursos', {lista: dados.data}))
-  .catch(e => res.render('error', {error: e}))
-})
 
+
+router.get('/recursosprivados', function(req, res) {
+  console.log('Recursos Privados: '+ jwt_decode(req.cookies.token).level)
+  console.log('Recursos Privados: '+ jwt_decode(req.cookies.token).id)
+
+  var ulevel = jwt_decode(req.cookies.token).level;
+  var uid = jwt_decode(req.cookies.token).id;
+  
+  if(ulevel == 'admin' || ulevel == 'produtor') {
+    axios.get('http://localhost:8001/recursos/'+uid+'?token=' + req.cookies.token)
+      .then(dados => res.render('recursos-privados', {lista: dados.data}))
+      .catch(e => res.render('error', {error: e}))
+  }
+  else{
+     res.render('privilege-error', {message: 'Não tem permissões para aceder a esta página'})
+  }
+})
+  
 router.get('/index', function(req, res) {
   res.render('index');
 });

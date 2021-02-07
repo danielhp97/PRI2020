@@ -51,7 +51,9 @@ function(req, res, next) {
     axios.get('http://localhost:8001/users?token=' + req.cookies.token)
       .then(dados => res.render('listaUsers', {lista: dados.data}))
       .catch(e => res.render('error', {error: e}))
+  }
 });
+
 
 
 router.get('/manage',

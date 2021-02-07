@@ -34,11 +34,14 @@ var upload = multer({dest: './public/uploads/',
 //get todos os recursos
 //get todos os recursos
 router.get('/', function(req, res) {
-  if(req.query) {
+  console.log('Req query' + req.query)
+  console.log('Req url' + req.url)
+
+  if(Object.keys(req.query).length > 1){                  //&visibility=public
     axios.get('http://localhost:8001/recursos' + req.url +'&token=' + req.cookies.token)
       .then(dados => res.render('listaRecursos', {lista: dados.data}))
       .catch(e => res.render('error', {error: e}))
-  }else{
+  }else{                                                  //&visibility=public
     axios.get('http://localhost:8001/recursos?token=' + req.cookies.token)
     .then(dados => res.render('listaRecursos', {lista: dados.data}))
     .catch(e => res.render('error', {error: e}))

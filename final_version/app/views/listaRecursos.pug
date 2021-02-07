@@ -10,17 +10,18 @@ block content
                 li.nav-item.active
                     a.nav-link(href='/repositorio') Repositório
                 li.nav-item
-                    a.nav-link(href='/meusrecursos') Meus Recursos
+                    a.nav-link(href='/recursosprivados') Recursos Privados
             ul.navbar-nav.mr-auto
                 li.nav-item.active
                     a.nav-link(href='/index') VIEWS/ROTAS
+
             ul.navbar-nav.float-right
                 li.nav-item
                     a.nav-link(href='/logout') Logout
                 li.nav-item
-                    a.nav-linka(href='/users/detalhe/+u.username') Conta
+                    a.nav-link(href='/conta') Conta
                 li.nav-item
-                          a.nav-link(href='/users/manage') Admin
+                    a.nav-link(href='/admin') Admin
     .w3-container.w3-boarder.w3-dark-grey
       h3 Filtrar
       form.w3.container(action='/recursos' method='GET', enctype='text')
@@ -86,7 +87,6 @@ block content
                     td= r.dateCreation
                     td= r.rank
                     td.w3-center
-                        a(href="/recursos/download/"+r.downloadName) Download
-                        td.w3-center
-                            a(href="/recursos/"+r._id) Ver
+                        a(href="/recursos/download/"+r.downloadName) Download 
+                        a(href="/recursos/"+r._id) Ver
                                 //button.w3-button.w3-teal(onclick="verRecurso('" + r._id + "')" style="margin-right: 5%") Ver Informação
