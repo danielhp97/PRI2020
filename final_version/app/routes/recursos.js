@@ -32,10 +32,18 @@ var upload = multer({dest: './public/uploads/',
 
 
 //get todos os recursos
+//get todos os recursos
 router.get('/', function(req, res) {
-  axios.get('http://localhost:8001/recursos?token=' + req.cookies.token)
+  console.log(' req url ' + req.url +'Info do pedido req.body: '+ JSON.stringify(req.body));
+  if(req.query) {
+    axios.get('http://localhost:8001/recursos' + req.url +'?token=' + req.cookies.token)
+      .then(dados => res.render('listaRecursos', {lista: dados.data}))
+      .catch(e => res.render('error', {error: e}))
+  }else{
+    axios.get('http://localhost:8001/recursos?token=' + req.cookies.token)
     .then(dados => res.render('listaRecursos', {lista: dados.data}))
     .catch(e => res.render('error', {error: e}))
+  }
 });
 
 router.get('/:id', function(req, res) {
