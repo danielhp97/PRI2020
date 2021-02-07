@@ -9,12 +9,6 @@ const Recurso = require('../controllers/recursos')
 // ------------------------------------------------ recurso
 // Listar todas
 router.get('/', (req, res) => {
-  console.log(' req url ' + req.url +'Info do pedido req.body: '+ JSON.stringify(req.body));
-
-  console.log('req --->'+req.query.type)
-  console.log('req --->'+req.query.uc)
-  console.log('req --->'+req.query.year)
-
 
   if (req.query.type && req.query.uc && req.query.year) {
     Recurso.listarTypeUcYear(req.query.type, req.query.uc, req.query.year)

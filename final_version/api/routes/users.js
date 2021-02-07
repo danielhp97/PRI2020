@@ -8,9 +8,26 @@ const User = require('../controllers/users');
 
 // ------------------------------------------------ user
 router.get('/', (req, res) => {
+
+  if (req.query.filiation && req.query.level) {
+    User.listarFiliationLevel(req.query.filiation, req.query.level)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else if (req.query.filiation) {
+    User.listarFiliation(req.query.filiation)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else if (req.query.level) {
+    User.listarLevel(req.query.level)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }else{
     User.listar()
       .then(dados => res.status(200).jsonp(dados))
       .catch(e => res.status(500).jsonp({error: e}))
+    }
 });
 
 router.get('/detalhe/:id', function(req, res) {

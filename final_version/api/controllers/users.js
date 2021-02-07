@@ -9,6 +9,28 @@ module.exports.listar = () => {
         .exec()
 }
 
+
+//listar com contraints
+
+module.exports.listarFiliationLevel = (f,l) => {
+    return UserL
+        .find({type: t, uc:u})
+        .exec()
+}
+
+module.exports.listarFiliation = (f) => {
+    return UserL
+        .find({filiation: f})
+        .exec()
+}
+
+module.exports.listarLevel = (l) => {
+    return UserL
+        .find({level: l})
+        .exec()
+}
+
+
 module.exports.consultar = id => {
     return UserL
         .findOne({_id: id})

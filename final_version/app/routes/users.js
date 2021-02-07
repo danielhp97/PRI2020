@@ -43,10 +43,14 @@ function(req, res, next) {
   if (dados != 'admin') res.status(403).send('Access denied.')
   next()
 }, function(req, res) {
-  console.log(JSON.stringify(req.cookies));
-  axios.get('http://localhost:8001/users?token=' + req.cookies.token)
-    .then(dados => res.render('listaUsers', {lista: dados.data}))
-    .catch(e => res.render('error', {error: e}))
+  if(req.query) {
+    axios.get('http://localhost:8001/users' + req.url +'&token=' + req.cookies.token)
+      .then(dados => res.render('listaUsers', {lista: dados.data}))
+      .catch(e => res.render('error', {error: e}))
+  }else{
+    axios.get('http://localhost:8001/users?token=' + req.cookies.token)
+      .then(dados => res.render('listaUsers', {lista: dados.data}))
+      .catch(e => res.render('error', {error: e}))
 });
 
 
