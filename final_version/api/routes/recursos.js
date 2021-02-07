@@ -9,33 +9,47 @@ const Recurso = require('../controllers/recursos')
 // ------------------------------------------------ recurso
 // Listar todas
 router.get('/', (req, res) => {
-  Recurso.listar()
-    .then(dados => res.status(200).jsonp(dados) )
-    .catch(e => res.status(500).jsonp({error: e}))
-});
-
-router.get('/istonaoenada' function (req, res, next) {
-  if (req.query.uc && req.query.year) {
-    User.listbyNameCourse(req.query.name, req.query.course)
+  if (req.query.type && req.query.uc && req.query.year) {
+    Recurso.listarTypeUcYear(req.query.type, req.query.uc, req.query.year)
       .then(data => res.jsonp(data))
       .catch(error => res.status(500).jsonp(error))
   }
-  else if (req.query.name) {
-    User.listbyName(req.query.name)
+  else if (req.query.type && req.query.uc) {
+    Recurso.listarTypeUc(req.query.type, req.query.uc)
       .then(data => res.jsonp(data))
       .catch(error => res.status(500).jsonp(error))
   }
-  else if (req.query.course) {
-    User.listbyCourse(req.query.course)
+  else if (req.query.type && req.query.year) {
+    Recurso.listarTypeYear(req.query.type, req.query.year)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else if (req.query.uc && req.query.year) {
+    Recurso.listarUcYear(req.query.uc,req.query.year)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else if (req.query.type) {
+    Recurso.listarType(req.query.type)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else if (req.query.uc) {
+    Recurso.listarUc(req.query.uc)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+  else if (req.query.year) {
+    Recurso.listarYear(req.query.year)
       .then(data => res.jsonp(data))
       .catch(error => res.status(500).jsonp(error))
   }
   else {
-    User.list()
-      .then(data => res.jsonp(data))
-      .catch(error => res.status(500).jsonp(error))
+  Recurso.listar()
+    .then(dados => res.status(200).jsonp(dados) )
+    .catch(e => res.status(500).jsonp({error: e}))
   }
-
+});
 
 
 // Consultar uma

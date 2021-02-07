@@ -83,7 +83,7 @@ router.delete('/apagar/:idUser',function(req, res, next) {
  console.log(req.params.idUser)
  if (dados != 'admin' ||  (dados != 'admin' && user_id != req.params.idUser)) res.status(403).send('Access denied.')
  next()
-}, function(req, res) => {
+}, function(req, res) {
   axios.delete('http://localhost:8001/users/' + req.params.idUser + '?token=' + req.cookie.token)
     .then(res.redirect('/admin'))
     .catch(e => res.render('error', {error: e}))
@@ -96,7 +96,7 @@ router.put('/alterar/:idUser',function(req, res, next) {
  console.log(req.params.idUser)
  if (dados != 'admin' ||  (dados != 'admin' && user_id != req.params.idUser)) res.status(403).send('Access denied.')
  next()
-}, function (req, res) => {
+}, function (req, res) {
   axios.put('http://localhost:8001/users/' + req.params.idUser + '?token=' + req.cookie.token)
     .then(res.redirect('/admin'))
     .catch(e => res.render('error', {error: e}))
