@@ -61,6 +61,12 @@ module.exports.consultar = id => {
         .exec()
 }
 
+module.exports.consultarAuthor = a => {
+    return Recurso
+        .find({author: a})
+        .exec()
+}
+
 module.exports.inserir = t => {
     var novo = new Recurso(t)
     return novo.save()

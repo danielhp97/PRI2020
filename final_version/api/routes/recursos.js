@@ -56,8 +56,13 @@ router.get('/', (req, res) => {
 
 // Consultar uma
 router.get('/:id', function(req, res) {
-  console.log('get recursos/:id '+req.params.id)
   Recurso.consultar(req.params.id)
+    .then(dados => res.status(200).jsonp(dados))
+    .catch(e => res.status(500).jsonp({error: e}))
+});
+
+router.get('/author/:author', function(req, res) {
+  Recurso.consultar(req.params.author)
     .then(dados => res.status(200).jsonp(dados))
     .catch(e => res.status(500).jsonp({error: e}))
 });

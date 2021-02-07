@@ -31,9 +31,9 @@ router.get('/recursosprivados', function(req, res) {
 
   var ulevel = jwt_decode(req.cookies.token).level;
   var uid = jwt_decode(req.cookies.token).id;
-  
+
   if(ulevel == 'admin' || ulevel == 'produtor') {
-    axios.get('http://localhost:8001/recursos/'+uid+'?token=' + req.cookies.token)
+    axios.get('http://localhost:8001/recursos/author/'+uid+'?token=' + req.cookies.token)
       .then(dados => res.render('recursos-privados', {lista: dados.data}))
       .catch(e => res.render('error', {error: e}))
   }
@@ -41,7 +41,7 @@ router.get('/recursosprivados', function(req, res) {
      res.render('privilege-error', {message: 'Não tem permissões para aceder a esta página'})
   }
 })
-  
+
 router.get('/index', function(req, res) {
   res.render('index');
 });
