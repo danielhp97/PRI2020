@@ -1,43 +1,23 @@
 extends layout
 
 block content
-<<<<<<< HEAD
-nav.navbar.navbar-expand-lg.navbar-dark.w3-dark-grey
-    a.navbar-brand(href='/home') Feed/Home
-    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-        span.navbar-toggler-icon
-    .collapse.navbar-collapse(id='navbarSupportedContent')
-        ul.navbar-nav.mr-auto
-            li.nav-item.active
-                a.nav-link(href='/repositorio') Repositório
-            li.nav-item
-                a.nav-link(href='/recursosprivados') Recursos Privados
-        ul.navbar-nav.mr-auto
-            li.nav-item.active
-                a.nav-link(href='/index') VIEWS/ROTAS
-=======
     nav.navbar.navbar-expand-lg.navbar-dark.w3-dark-grey
-        a.navbar-brand(href='/home') Feed/Home
-        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-            span.navbar-toggler-icon
-        .collapse.navbar-collapse(id='navbarSupportedContent')
-            ul.navbar-nav.mr-auto
-                li.nav-item.active
-                    a.nav-link(href='/repositorio') Repositório
-                li.nav-item
-                    a.nav-link(href='/recursosprivados') Meus Recursos
-            ul.navbar-nav.mr-auto
-                li.nav-item.active
-                    a.nav-link(href='/index') VIEWS/ROTAS
->>>>>>> 9ae0284326b6bab2f735cf015721776e0217b519
+      a.navbar-brand(href='/home') Feed/Home
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+      .collapse.navbar-collapse(id='navbarSupportedContent')
+          ul.navbar-nav.mr-auto
+              li.nav-item.active
+                  a.nav-link(href='/repositorio') Repositório
+              li.nav-item
+                  a.nav-link(href='/recursosprivados') Recursos Privados
 
-        ul.navbar-nav.float-right
-            li.nav-item
-                a.nav-link(href='/logout') Logout
-            li.nav-item
-                a.nav-link(href='/conta') Conta
-            li.nav-item
-                a.nav-link(href='/admin') Admin
+          ul.navbar-nav.float-right
+              li.nav-item
+                  a.nav-link(href='/users/detalhe/') Conta
+              li.nav-item
+                  a.nav-link(href='/users/manage') Admin
+
     .w3-container.w3-margin
       table.w3-table-all.w3-border
           tr
@@ -75,4 +55,4 @@ nav.navbar.navbar-expand-lg.navbar-dark.w3-dark-grey
             td= recurso.rank
 
       .w3-card-2
-      a(href="/recursos") Voltar
+      a(href="/home") Voltar para a Homepage

@@ -8,16 +8,16 @@ block content
         p
         label.w3-bold Nome:
         input.w3-input.w3-border(name="name" type="text")
-        p         
+        p
         label.w3-bold Username:
         input.w3-input.w3-border(name="username" type="text")
-        p     
+        p
         label.w3-bold Email:
         input.w3-input.w3-border(name="email" type="text")
         p
         label.w3-bold Password:
         input.w3-input.w3-border(name="password" type="text")
-        p         
+        p
         label.w3-bold Filiação:
           select.w3-input.w3-border(name="filiation")
             option(value="professor" selected) Professor
@@ -25,13 +25,11 @@ block content
         p
         lable Tipo de Utilizador:
           select.w3-input.w3-border(name="level")
-            option(value="produtor" selected) Produtor
-            option(value="consumidor") Consumidor
-            option(value="admin") Administrador
+            option(value="consumidor" selected) User Padrão
 
         button.w3-button.w3-block.w3-margin-top.w3-margin-bottom.w3-gray(type="submit") Registar
 
-    .w3-container.w3-gray.w3-center
-      p
-        p ...
-      p
+        .w3-container.w3-dark-grey.w3-center
+          p
+          a.w3-margin(href="/") Voltar ao login
+          p

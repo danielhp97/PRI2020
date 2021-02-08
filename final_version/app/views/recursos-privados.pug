@@ -17,11 +17,9 @@ block content
 
             ul.navbar-nav.float-right
                 li.nav-item
-                    a.nav-link(href='/logout') Logout
+                    a.nav-link(href='/users/detalhe/') Conta
                 li.nav-item
-                    a.nav-link(href='/conta') Conta
-                li.nav-item
-                    a.nav-link(href='/admin') Admin
+                    a.nav-link(href='/users/manage') Admin
 
     .w3-container.w3-boarder.w3-dark-grey.w3-margin-top
         p
@@ -59,9 +57,12 @@ block content
                     td= r.rank
                     td
                         a(href="/recursos/"+r._id) Ver
+
                         a(href="/recursos/download/"+r.downloadName) Download
-                        a(href="/recursos/"+r._id) Editar
-                        a(href="/recursos/"+r._id) Apagar
+
+                        a(href="/editar/recursos/"+r._id) Editar
+
+                        a(href="/recursos/apagar/"+r._id) Apagar
 
     .w3-container.w3-boarder.w3-dark-grey
         p

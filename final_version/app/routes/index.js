@@ -26,9 +26,6 @@ router.get('/repositorio', function(req, res) {
 
 
 router.get('/recursosprivados', function(req, res) {
-  console.log('Recursos Privados: '+ jwt_decode(req.cookies.token).level)
-  console.log('Recursos Privados: '+ jwt_decode(req.cookies.token).id)
-
   var ulevel = jwt_decode(req.cookies.token).level;
   var uid = jwt_decode(req.cookies.token).id;
 
@@ -51,7 +48,6 @@ router.get('/editar/recursos/:id', function(req, res) {
 });
 
 router.get('/editar/users/:id', function(req, res) {
-  console.log(req.params.id);
   res.render('editarUser',{id_user: req.params.id})
 });
 

@@ -39,11 +39,11 @@ router.get('/', function(req, res) {
 
   if(Object.keys(req.query).length > 1){                  //&visibility=public
     axios.get('http://localhost:8001/recursos' + req.url +'&token=' + req.cookies.token)
-      .then(dados => res.render('listaRecursos', {lista: dados.data}))
+      .then(dados => res.render('listaRecursosAdmin', {lista: dados.data}))
       .catch(e => res.render('error', {error: e}))
   }else{                                                  //&visibility=public
     axios.get('http://localhost:8001/recursos?token=' + req.cookies.token)
-    .then(dados => res.render('listaRecursos', {lista: dados.data}))
+    .then(dados => res.render('listaRecursosAdmin', {lista: dados.data}))
     .catch(e => res.render('error', {error: e}))
   }
 });
@@ -120,13 +120,13 @@ router.get('/download/:filename', function(req, res) {
    .catch(e => res.render('error', {error: e}))
 })
 
-//apagar user
+//apagar Recurso
 router.get('/apagar/:idRec', function(req, res) {
   var cookie_id = jwt_decode(req.cookies.token).id;
   var level = jwt_decode(req.cookies.token).level;
   if( level === 'admin' || cookie_id === req.params.idUser) {
     axios.delete('http://localhost:8001/recursos/' + req.params.idRec + '?token=' + req.cookies.token)
-      .then(res.redirect('/'))
+      .then(res.redirect('/home'))
       .catch(e => res.render('error', {error: e}))
   } else {
     res.send('Access Denied')
@@ -149,7 +149,7 @@ router.get('/modificar/:idRec',function(req, res, next) {
   }
   if( level === 'admin' || cookie_id === req.params.idUser) {
     axios.put('http://localhost:8001/recursos/?token=' + req.cookies.token, put_data)
-      .then(res.redirect('/users/'))
+      .then(res.redirect('/home'))
       .catch(e => res.render('error', {error: e}))
   }
 })

@@ -1,85 +1,81 @@
 extends layout
 
 block content
-nav.navbar.navbar-expand-lg.navbar-dark.w3-dark-grey
-    a.navbar-brand(href='/home') Feed/Home
-    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-        span.navbar-toggler-icon
-    .collapse.navbar-collapse(id='navbarSupportedContent')
-        ul.navbar-nav.mr-auto
-            li.nav-item.active
-                a.nav-link(href='/repositorio') Repositório
-            li.nav-item
-                a.nav-link(href='/recursosprivados') Recursos Privados
-        ul.navbar-nav.mr-auto
-            li.nav-item.active
-                a.nav-link(href='/index') VIEWS/ROTAS
+    nav.navbar.navbar-expand-lg.navbar-dark.w3-dark-grey
+      a.navbar-brand(href='/home') Feed/Home
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+      .collapse.navbar-collapse(id='navbarSupportedContent')
+          ul.navbar-nav.mr-auto
+              li.nav-item.active
+                  a.nav-link(href='/repositorio') Repositório
+              li.nav-item
+                  a.nav-link(href='/recursosprivados') Recursos Privados
 
-        ul.navbar-nav.float-right
-            li.nav-item
-                a.nav-link(href='/logout') Logout
-            li.nav-item
-                a.nav-link(href='/conta') Conta
-            li.nav-item
-                a.nav-link(href='/admin') Admin
-  .w3-container.w3-margin.w3-border.w3-ligh-grey
-    .w3-container.w3-grey
-      h3 Criar Recurso
-      form.w3.container(action='/recursos/inserir' method='POST', enctype='multipart/form-data')
-        p
-        label.w3-bold Titulo
-        input.w3-input.w3-border(type="text", name="title")
-        p
-        label.w3-bold Subtítulo
-        input.w3-input.w3-border(type="text", name="subtitle")
-        p
-        label.w3-bold Descrição
-        input.w3-input.w3-border(type="text", name="desc")
-        p
-        label.w3-bold Tipo
-          select.w3-input.w3-border(name="type")
-            option(value="livro") Livro
-            option(value="artigo") Artigo
-            option(value="aplicação") Aplicação
-            option(value="monografia") Monografia
-            option(value="relatorio") Relatório
-            option(value="trabalho") Trabalho
-            option(value="tese") Tese
-            option(value="outro" selected) Outro
-        p
-        label.w3-bold Unidade Curricular
-          select.w3-input.w3-border(name="uc")
-            option(value="pi") Programação Imperativa
-            option(value="anal") Análise
-            option(value="log") Lógica
-            option(value="pri") Processamento e Representação de Informação
-            option(value="sd") Sistemas Distribuidos
-            option(value="pei") Projeto Engenharia Informática
-            option(value="outro" selected) Outro
-        p
-        label.w3-bold Ano
-          select.w3-input.w3-border(name="year")
-            option(value="1ano") 1ºAno
-            option(value="2ano") 2ºAno
-            option(value="3ano") 3ºAno
-            option(value="4ano") 4ºAno
-            option(value="5ano") 5ºAno
-            option(value="outro" selected) Outro
-        p
-        label.w3-bold Visiblidade
-          select.w3-input.w3-border(name="visibility")
-            option(value="publico" selected) Público
-            option(value="privado") Privado
+          ul.navbar-nav.float-right
+              li.nav-item
+                  a.nav-link(href='/users/detalhe/') Conta
+              li.nav-item
+                  a.nav-link(href='/users/manage') Admin
 
-        p
+    .w3-container.w3-margin.w3-border.w3-ligh-grey
+      .w3-container.w3-grey
+        h3 Criar Recurso
+        form.w3.container(action='/recursos/inserir' method='POST', enctype='multipart/form-data')
+          p
+          label.w3-bold Titulo
+          input.w3-input.w3-border(type="text", name="title")
+          p
+          label.w3-bold Subtítulo
+          input.w3-input.w3-border(type="text", name="subtitle")
+          p
+          label.w3-bold Descrição
+          input.w3-input.w3-border(type="text", name="desc")
+          p
+          label.w3-bold Tipo
+            select.w3-input.w3-border(name="type")
+              option(value="livro") Livro
+              option(value="artigo") Artigo
+              option(value="aplicação") Aplicação
+              option(value="monografia") Monografia
+              option(value="relatorio") Relatório
+              option(value="trabalho") Trabalho
+              option(value="tese") Tese
+              option(value="outro" selected) Outro
+          p
+          label.w3-bold Unidade Curricular
+            select.w3-input.w3-border(name="uc")
+              option(value="pi") Programação Imperativa
+              option(value="anal") Análise
+              option(value="log") Lógica
+              option(value="pri") Processamento e Representação de Informação
+              option(value="sd") Sistemas Distribuidos
+              option(value="pei") Projeto Engenharia Informática
+              option(value="outro" selected) Outro
+          p
+          label.w3-bold Ano
+            select.w3-input.w3-border(name="year")
+              option(value="1ano") 1ºAno
+              option(value="2ano") 2ºAno
+              option(value="3ano") 3ºAno
+              option(value="4ano") 4ºAno
+              option(value="5ano") 5ºAno
+              option(value="outro" selected) Outro
+          p
+          label.w3-bold Visiblidade
+            select.w3-input.w3-border(name="visibility")
+              option(value="publico" selected) Público
+              option(value="privado") Privado
 
-        label.w3-bold File
-          input.w3-input.w3-border(type="file", name="myFile")
-        p
-        button.btn.btn-primary(type='submit') Submit
+          p
+
+          label.w3-bold File
+            input.w3-input.w3-border(type="file", name="myFile")
+          p
+          button.btn.btn-primary(type='submit') Submit
 
 
-    .w3-container.w3-dark-grey.w3-center
-      p
-      a.w3-margin(href="/home") Voltar a homepage
-      p
+      .w3-container.w3-dark-grey.w3-center
+        p
+        a.w3-margin(href="/home") Voltar a homepage
+        p

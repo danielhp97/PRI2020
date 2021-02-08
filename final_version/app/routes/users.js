@@ -114,7 +114,7 @@ router.get('/modificar/:idUser',function(req, res, next) {
   }
   if( level === 'admin' || cookie_id === req.params.idUser) {
     axios.put('http://localhost:8001/users/?token=' + req.cookies.token, put_data)
-      .then(res.redirect('/users/'))
+      .then(res.redirect('/home'))
       .catch(e => res.render('error', {error: e}))
   }
 })
