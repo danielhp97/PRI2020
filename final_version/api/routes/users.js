@@ -47,15 +47,6 @@ router.put('/', function(req, res){
     .catch(e => res.status(500).jsonp({error: e}))
 });
 
-router.put('/lastacess/', function(req, res){
-  var url = req.url.split("/")[2]
-  var userID = url.split("?")[0]
-  console.log(url)
-  console.log(userID)
-  // User.alterarLastAcess(userID)
-  //   .then(dados => res.status(201).jsonp({dados: dados}))
-  //   .catch(e => res.status(500).jsonp({error: e}))
-});
 
 // Remover uma tarefa
 router.delete('/:id', function(req, res) {
