@@ -29,7 +29,7 @@ block content
             th Filiação
             th Nivel
             th Data Registo
-            th Data Ultimo Acesso
+            //th Data Ultimo Acesso
             th Operações
         each u in lista
             tr
@@ -41,7 +41,7 @@ block content
                 td= u.filiation
                 td= u.level
                 td= u.dateRegister
-                td= u.dateLastAcess
+                //td= u.dateLastAcess
                 td.w3-center
                   a(href="/users/apagar/"+u._id) Apagar /
 

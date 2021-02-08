@@ -5,11 +5,11 @@ var jwt_decode = require('jwt-decode')
 
 
 /* middleware for protecting admin only routes */
-function(req, res, next) {
- var dados = jwt_decode(req.cookies.token).level;
- if (dados != 'admin') res.status(403).send('Access denied.')
- next()
-},
+// function(req, res, next) {
+//  var dados = jwt_decode(req.cookies.token).level;
+//  if (dados != 'admin') res.status(403).send('Access denied.')
+//  next()
+// },
 
 
 

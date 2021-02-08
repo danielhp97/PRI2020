@@ -41,7 +41,7 @@ router.get('/recursosprivados',
 router.get('/editar/recursos/:id', function(req,res ,next){
   if(dados === admin || dados === produtor) next()
   else { res.status(403).send('Access denied.') }
-}
+},
  function(req, res) {
   res.render('editarRecurso',{id_rec: req.params.id})
 });
