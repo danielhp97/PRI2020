@@ -8,7 +8,9 @@ router.get('/', function(req, res) {
 });
 
 router.get('/home', function(req, res) {
-  res.render('home');
+  axios.get('http://localhost:8001/postes/?token=' + req.cookies.token)
+    .then(dados => res.render('home', {lista: dados.data}))
+    .catch(e => res.render('error', {error: e}))
 });
 
 //lista com rotas/views
@@ -17,7 +19,6 @@ router.get('/index', function(req, res) {
 });
 
 router.get('/repositorio', function(req, res) {
-  console.log(' req url ' + req.url +' Info do pedido req.body: '+ JSON.stringify(req.body));
   axios.get('http://localhost:8001/recursos?visibility=publico&token=' + req.cookies.token)
     .then(dados => res.render('listaRecursos', {lista: dados.data}))
     .catch(e => res.render('error', {error: e}))
@@ -74,18 +75,10 @@ router.post('/login', function(req, res) {
         secure: false, // set to true if your using https
         httpOnly: true
       });
-      res.redirect('/timeupdate')
+      res.redirect('/home')
     })
     .catch(e => res.render('login-error', {message: 'Credenciais Inválidas', error: e}))
 });
-
-router.get('/timeupdate', function(req,res){
-  var userID = jwt_decode(req.cookies.token).id;
-  var dateLastAcess = new Date(Date.now())
-  axios.put('http://localhost:8001/users/lastacess/'+userID+'?token=' + req.cookies.token, dateLastAcess)
-    .then(res.redirect('/home'))
-    .catch(e => res.render('error', {error: e}))
-})
 
 
 router.get('/recursos/upload', function(req,res) {

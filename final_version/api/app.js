@@ -6,7 +6,7 @@ var jwt = require('jsonwebtoken');
 var indexRouter = require('./routes/index');
 var recursoRouter = require('./routes/recursos');
 var usersRouter = require('./routes/users');
-var postesRouter = require('./routes/postes');
+var posteRouter = require('./routes/postes');
 
 var mongoose = require('mongoose');
 const connectionstring = 'mongodb+srv://root:projetopri2020@cluster0.yy2rh.mongodb.net/pri2020?retryWrites=true&w=majority';
@@ -40,7 +40,7 @@ app.use(function(req,res,next){
 app.use('/', indexRouter);
 app.use('/recursos', recursoRouter);
 app.use('/users', usersRouter);
-app.use('/post', postesRouter)
+app.use('/postes', posteRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -51,7 +51,7 @@ router.get('/', function(req, res) {
 
 router.get('/:id', function(req, res) {
   axios.get('http://localhost:8001/recursos/' + req.params.id + '?token=' + req.cookies.token)
-    .then(dados => res.render('recurso', {recurso: dados.data}))
+    .then(dados => res.render('recurso', {recurso: dados.data, rec_id: req.params.id}))
     .catch(e => res.render('error', {error: e}))
 });
 

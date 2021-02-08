@@ -6,6 +6,14 @@ var Poste = require('../models/postes')
 module.exports.listar = () => {
     return Poste
         .find()
+        .sort('-dateCreation')
+        .exec()
+}
+
+module.exports.listarRecurso = (r) => {
+    return Poste
+        .find({resource_id: r})
+        .sort('-dateCreation')
         .exec()
 }
 

@@ -19,7 +19,7 @@ block content
                     a.nav-link(href='/users/manage') Admin
 
     .w3-container.w3-boarder.w3-dark-grey
-      Posts mais Recentes
+      Posts mais Recentes deste Recurso
       each p in lista
         .w3-container.w3-boarder.w3-white
           p Title : #{p.title}
@@ -28,4 +28,7 @@ block content
           p author : #{p.author}
 
     footer
-        .w3-container.w3-gray.w3-center
+        .w3-container.w3-dark-grey.w3-center
+          p
+          a.w3-margin(href="/recursos/"+rec_id) Voltar
+          p
