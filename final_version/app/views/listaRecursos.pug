@@ -22,40 +22,42 @@ block content
                     a.nav-link(href='/conta') Conta
                 li.nav-item
                     a.nav-link(href='/admin') Admin
-    .w3-container.w3-boarder.w3-dark-grey
-      h3 Filtrar
-      form.w3.container(action='/recursos' method='GET', enctype='text')
-        label.w3-bold Tipo
-          select.w3-input.w3-border(name="type")
-            option(value="livro") Livro
-            option(value="artigo") Artigo
-            option(value="aplicação") Aplicação
-            option(value="monografia") Monografia
-            option(value="relatorio") Relatório
-            option(value="trabalho") Trabalho
-            option(value="tese") Tese
-            option(value="outro" selected) Outro
-        p
-        label.w3-bold Unidade Curricular
-          select.w3-input.w3-border(name="uc")
-            option(value="pi") Programação Imperativa
-            option(value="anal") Análise
-            option(value="log") Lógica
-            option(value="pri") Processamento e Representação de Informação
-            option(value="sd") Sistemas Distribuidos
-            option(value="pei") Projeto Engenharia Informática
-            option(value="outro" selected) Outro
-        p
-        label.w3-bold Ano
-          select.w3-input.w3-border(name="year")
-            option(value="1ano") 1ºAno
-            option(value="2ano") 2ºAno
-            option(value="3ano") 3ºAno
-            option(value="4ano") 4ºAno
-            option(value="5ano") 5ºAno
-            option(value="outro" selected) Outro
+    p
 
-        button.w3-button.w3-block.w3-margin-top.w3-margin-bottom.w3-gray(type="submit") Filtrar
+    .w3-container.w3-boarder.w3-dark-grey
+        h3 Filtrar
+        form.w3.container(action='/recursos' method='GET', enctype='text')
+            label.w3-bold Tipo
+            select.w3-input.w3-border(name="type")
+                option(value="livro") Livro
+                option(value="artigo") Artigo
+                option(value="aplicação") Aplicação
+                option(value="monografia") Monografia
+                option(value="relatorio") Relatório
+                option(value="trabalho") Trabalho
+                option(value="tese") Tese
+                option(value="outro" selected) Outro
+            p
+            label.w3-bold Unidade Curricular
+            select.w3-input.w3-border(name="uc")
+                option(value="pi") Programação Imperativa
+                option(value="anal") Análise
+                option(value="log") Lógica
+                option(value="pri") Processamento e Representação de Informação
+                option(value="sd") Sistemas Distribuidos
+                option(value="pei") Projeto Engenharia Informática
+                option(value="outro" selected) Outro
+            p
+            label.w3-bold Ano
+            select.w3-input.w3-border(name="year")
+                option(value="1ano") 1ºAno
+                option(value="2ano") 2ºAno
+                option(value="3ano") 3ºAno
+                option(value="4ano") 4ºAno
+                option(value="5ano") 5ºAno
+                option(value="outro" selected) Outro
+
+            button.w3-button.w3-block.w3-margin-top.w3-margin-bottom.w3-gray(type="submit") Filtrar
 
 
     .w3-container.w3-margin
@@ -89,4 +91,7 @@ block content
                     td.w3-center
                         a(href="/recursos/download/"+r.downloadName) Download 
                         a(href="/recursos/"+r._id) Ver
-                                //button.w3-button.w3-teal(onclick="verRecurso('" + r._id + "')" style="margin-right: 5%") Ver Informação
+    .w3-container.w3-boarder.w3-dark-grey
+        p    
+
+        p

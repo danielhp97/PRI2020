@@ -62,7 +62,9 @@ router.get('/:id', function(req, res) {
 });
 
 router.get('/author/:author', function(req, res) {
-  Recurso.consultar(req.params.author)
+  console.log('req params autor'+req.params.author)
+
+  Recurso.consultarAuthor(req.params.author)
     .then(dados => res.status(200).jsonp(dados))
     .catch(e => res.status(500).jsonp({error: e}))
 });
