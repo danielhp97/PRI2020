@@ -1,6 +1,27 @@
 extends layout
 
 block content
+nav.navbar.navbar-expand-lg.navbar-dark.w3-dark-grey
+    a.navbar-brand(href='/home') Feed/Home
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+    .collapse.navbar-collapse(id='navbarSupportedContent')
+        ul.navbar-nav.mr-auto
+            li.nav-item.active
+                a.nav-link(href='/repositorio') Repositório
+            li.nav-item
+                a.nav-link(href='/recursosprivados') Recursos Privados
+        ul.navbar-nav.mr-auto
+            li.nav-item.active
+                a.nav-link(href='/index') VIEWS/ROTAS
+
+        ul.navbar-nav.float-right
+            li.nav-item
+                a.nav-link(href='/logout') Logout
+            li.nav-item
+                a.nav-link(href='/conta') Conta
+            li.nav-item
+                a.nav-link(href='/admin') Admin
   .w3-container.w3-margin.w3-border.w3-ligh-grey
     .w3-container.w3-grey
       h3 Criar Recurso

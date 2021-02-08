@@ -100,6 +100,9 @@ router.get('/apagar/:idUser', function(req, res) {
 router.get('/modificar/:idUser',function(req, res, next) {
   var cookie_id = jwt_decode(req.cookies.token).id;
   var level = jwt_decode(req.cookies.token).level;
+  console.log(req.params.idUser);
+  console.log(req.query.name);
+  console.log(req.query.email);
   var put_data = {
     _id: req.params.idUser,
     name: req.query.name,
@@ -110,7 +113,7 @@ router.get('/modificar/:idUser',function(req, res, next) {
     level: req.query.level
   }
   if( level === 'admin' || cookie_id === req.params.idUser) {
-    axios.put('http://localhost:8001/users/' + put_data + '?token=' + req.cookies.token)
+    axios.put('http://localhost:8001/users/?token=' + req.cookies.token, put_data)
       .then(res.redirect('/users/'))
       .catch(e => res.render('error', {error: e}))
   }

@@ -1,27 +1,27 @@
 extends layout
 
 block content
-    nav.navbar.navbar-expand-lg.navbar-dark.w3-dark-grey
-        a.navbar-brand(href='/home') Feed/Home
-        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-            span.navbar-toggler-icon
-        .collapse.navbar-collapse(id='navbarSupportedContent')
-            ul.navbar-nav.mr-auto
-                li.nav-item.active
-                    a.nav-link(href='/repositorio') Repositório
-                li.nav-item
-                    a.nav-link(href='/meusrecursos') Meus Recursos
-            ul.navbar-nav.mr-auto
-                li.nav-item.active
-                    a.nav-link(href='/index') VIEWS/ROTAS
+nav.navbar.navbar-expand-lg.navbar-dark.w3-dark-grey
+    a.navbar-brand(href='/home') Feed/Home
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+    .collapse.navbar-collapse(id='navbarSupportedContent')
+        ul.navbar-nav.mr-auto
+            li.nav-item.active
+                a.nav-link(href='/repositorio') Repositório
+            li.nav-item
+                a.nav-link(href='/recursosprivados') Recursos Privados
+        ul.navbar-nav.mr-auto
+            li.nav-item.active
+                a.nav-link(href='/index') VIEWS/ROTAS
 
-            ul.navbar-nav.float-right
-                li.nav-item
-                    a.nav-link(href='/logout') Logout
-                li.nav-item
-                    a.nav-link(href='/conta') Conta
-                li.nav-item
-                    a.nav-link(href='/admin') Admin
+        ul.navbar-nav.float-right
+            li.nav-item
+                a.nav-link(href='/logout') Logout
+            li.nav-item
+                a.nav-link(href='/conta') Conta
+            li.nav-item
+                a.nav-link(href='/admin') Admin
     .w3-container.w3-margin
       table.w3-table-all.w3-border
           tr
@@ -33,28 +33,28 @@ block content
           tr
               th Titulo
               td= recurso.title
-          tr    
+          tr
             th Subtítulo
             td= recurso.subtitle
-          tr  
+          tr
             th Descrição
             td= recurso.desc
-          tr    
+          tr
             th Tipo
             td= recurso.type
-          tr  
+          tr
             th Ano
             td= recurso.year
-          tr  
+          tr
             th UC
             td= recurso.uc
-          tr  
+          tr
             th Visibilidade
             td= recurso.visibility
-          tr  
+          tr
             th Data Criação
             td= recurso.dateCreation
-          tr  
+          tr
             th Rank
             td= recurso.rank
 

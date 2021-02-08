@@ -120,5 +120,38 @@ router.get('/download/:filename', function(req, res) {
    .catch(e => res.render('error', {error: e}))
 })
 
+//apagar user
+router.get('/apagar/:idRec', function(req, res) {
+  var cookie_id = jwt_decode(req.cookies.token).id;
+  var level = jwt_decode(req.cookies.token).level;
+  if( level === 'admin' || cookie_id === req.params.idUser) {
+    axios.delete('http://localhost:8001/recursos/' + req.params.idRec + '?token=' + req.cookies.token)
+      .then(res.redirect('/'))
+      .catch(e => res.render('error', {error: e}))
+  } else {
+    res.send('Access Denied')
+  }
+})
+
+
+//alterar user (put request)
+router.get('/modificar/:idRec',function(req, res, next) {
+  var cookie_id = jwt_decode(req.cookies.token).id;
+  var level = jwt_decode(req.cookies.token).level;
+  var put_data = {
+    _id: req.params.idRec,
+    title: req.query.title,
+    subtitle: req.query.subtitle,
+    desc: req.query.desc,
+    type: req.query.type,
+    year: req.query.year,
+    uc: req.query.uc,
+  }
+  if( level === 'admin' || cookie_id === req.params.idUser) {
+    axios.put('http://localhost:8001/recursos/?token=' + req.cookies.token, put_data)
+      .then(res.redirect('/users/'))
+      .catch(e => res.render('error', {error: e}))
+  }
+})
 
 module.exports = router;
