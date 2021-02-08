@@ -23,7 +23,7 @@ module.exports.consultar = id => {
         .exec()
 }
 
-module.exports.inserir = t => {
+module.exports.inserir = p => {
     var novo = new Poste(p)
     return novo.save()
 }
@@ -32,7 +32,4 @@ module.exports.remover = function(id){
     return Poste.deleteOne({_id: id})
 }
 
-module.exports.alterar = function(p){
-    return Poste.findByIdAndUpdate({_id: p._id}, p, {new: true})
-}
 

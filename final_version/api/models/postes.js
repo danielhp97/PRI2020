@@ -5,7 +5,7 @@ var posteSchema = new mongoose.Schema({
     resource_id: mongoose.Schema.Types.ObjectId,
     title: String,
     body: String,
-    dateCreation: String
+    dateCreation: Date
 })
 
 
