@@ -13,11 +13,6 @@ router.get('/home', function(req, res) {
     .catch(e => res.render('error', {error: e}))
 });
 
-//lista com rotas/views
-router.get('/index', function(req, res) {
-  res.render('index');
-});
-
 router.get('/repositorio', function(req, res) {
   axios.get('http://localhost:8001/recursos?visibility=publico&token=' + req.cookies.token)
     .then(dados => res.render('listaRecursos', {lista: dados.data}))
@@ -26,7 +21,8 @@ router.get('/repositorio', function(req, res) {
 
 
 
-router.get('/recursosprivados', function(req, res) {
+router.get('/recursosprivados',
+ function(req, res) {
   var ulevel = jwt_decode(req.cookies.token).level;
   var uid = jwt_decode(req.cookies.token).id;
 
@@ -40,15 +36,22 @@ router.get('/recursosprivados', function(req, res) {
   }
 })
 
-router.get('/index', function(req, res) {
-  res.render('index');
-});
 
-router.get('/editar/recursos/:id', function(req, res) {
+
+router.get('/editar/recursos/:id', function(req,res ,next){
+  if(dados === admin || dados === produtor) next()
+  else { res.status(403).send('Access denied.') }
+}
+ function(req, res) {
   res.render('editarRecurso',{id_rec: req.params.id})
 });
 
-router.get('/editar/users/:id', function(req, res) {
+router.get('/editar/users/:id', function(req, res, next) {
+ var dados = jwt_decode(req.cookies.token).level;
+ var id_cookie = jwt_decode(req.cookies.token).id;
+ if (dados != 'admin' || id_cookie != req.params.id) res.status(403).send('Access denied.')
+ next()
+}, function(req, res) {
   res.render('editarUser',{id_user: req.params.id})
 });
 
@@ -59,12 +62,16 @@ router.get('/registo', function(req, res) {
   res.render('registo');
 });
 
-router.get('/users/lista', function(req, res) {
-  console.log('Info do pedido req.body: '+ JSON.stringify(req.body));
-  axios.get('http://localhost:8001/users?token=' + req.cookies.token)
-    .then(dados => res.render('listaUsers', {lista: dados.data}))
-    .catch(e => res.render('error', {error: e}))
-});
+// router.get('/users/lista',function(req, res, next) {
+//  var dados = jwt_decode(req.cookies.token).level;
+//  if (dados != 'admin') res.status(403).send('Access denied.')
+//  next()
+// }, function(req, res) {
+//   console.log('Info do pedido req.body: '+ JSON.stringify(req.body));
+//   axios.get('http://localhost:8001/users?token=' + req.cookies.token)
+//     .then(dados => res.render('listaUsers', {lista: dados.data}))
+//     .catch(e => res.render('error', {error: e}))
+// });
 
 
 router.post('/login', function(req, res) {
@@ -81,7 +88,11 @@ router.post('/login', function(req, res) {
 });
 
 
-router.get('/recursos/upload', function(req,res) {
+router.get('/recursos/upload',function(req, res, next) {
+ var dados = jwt_decode(req.cookies.token).level;
+ if (dados != 'produtor') res.status(403).send('Access denied.')
+ next()
+}, function(req,res) {
   res.render('new-recurso')
 });
 

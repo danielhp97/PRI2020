@@ -65,15 +65,8 @@ function(req, res, next) {
 }, function(req, res, next) {
   res.render('admin')
 });
-//além disso, faltam aqui as rotas de post/put para comunicar com a API de forma a alterar os dados dos users (abaixo)
 
-// router.put('/manage'),
-
-// router.post('/manage'),
-
-//router.delete('/manage'),
-
-// pagina individual do user ( não tá funcional!)
+// pagina individual do user
 router.get('/detalhe', (req, res) => {
     var user_id = jwt_decode(req.cookies.token).id
     axios.get('http://localhost:8001/users/detalhe/' + user_id + '?token=' + req.cookies.token)

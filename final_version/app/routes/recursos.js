@@ -33,7 +33,11 @@ var upload = multer({dest: './public/uploads/',
 
 //get todos os recursos
 //get todos os recursos
-router.get('/', function(req, res) {
+router.get('/',function(req, res, next) {
+ var dados = jwt_decode(req.cookies.token).level;
+ if (dados === 'admin' || dados === 'produtor') next()
+ else {res.status(403).send('Access denied.') }
+}, function(req, res) {
   console.log('Req query' + req.query)
   console.log('Req url' + req.url)
   console.log(Object.keys(req.query).length)
@@ -59,7 +63,11 @@ router.get('/:id', function(req, res) {
 //upload de recursos
 
 
-router.post('/inserir', upload.single('myFile'), function(req,res){
+router.post('/inserir', upload.single('myFile'),function(req, res, next) {
+ var dados = jwt_decode(req.cookies.token).level;
+ if (dados === 'admin' || dados === 'produtor') next()
+ else {res.status(403).send('Access denied.') }
+}, function(req,res){
   var check = 0;
   if(req.file.path === undefined) { res.status(304).send('Please fill all of the form')}
   var zip = new admZip(req.file.path);
