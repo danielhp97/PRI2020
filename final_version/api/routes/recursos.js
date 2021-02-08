@@ -9,17 +9,40 @@ const Recurso = require('../controllers/recursos')
 // ------------------------------------------------ recurso
 // Listar todas
 router.get('/', (req, res) => {
+  for (const key in req.query) {
+    console.log(key, req.query[key])
+  }
 
-  if (req.query.type && req.query.uc && req.query.year) {
+  if (req.query.type && req.query.uc && req.query.year &&  req.query.visibility) {
+    Recurso.listarTypeUcYearVisibility(req.query.type, req.query.uc, req.query.year, req.query.visibility)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+
+  else if (req.query.type && req.query.uc & req.query.visibility) {
+    Recurso.listarTypeUcVisibility(req.query.type, req.query.uc, req.query.visibility)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+
+  else if (req.query.type && req.query.year & req.query.visibility) {
+    Recurso.listarTypeYearVisibility(req.query.type, req.query.year, req.query.visibility)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+
+  else if (req.query.year && req.query.uc & req.query.visibility) {
+    Recurso.listarYearUcVisibility(req.query.year, req.query.uc, req.query.visibility)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+
+  else if (req.query.type && req.query.uc & req.query.year) {
     Recurso.listarTypeUcYear(req.query.type, req.query.uc, req.query.year)
       .then(data => res.jsonp(data))
       .catch(error => res.status(500).jsonp(error))
   }
-  else if (req.query.type && req.query.uc) {
-    Recurso.listarTypeUc(req.query.type, req.query.uc)
-      .then(data => res.jsonp(data))
-      .catch(error => res.status(500).jsonp(error))
-  }
+
   else if (req.query.type && req.query.year) {
     Recurso.listarTypeYear(req.query.type, req.query.year)
       .then(data => res.jsonp(data))
@@ -30,18 +53,49 @@ router.get('/', (req, res) => {
       .then(data => res.jsonp(data))
       .catch(error => res.status(500).jsonp(error))
   }
+
+  else if (req.query.visibility && req.query.year) {
+    Recurso.listarVisibilityYear(req.query.visibility, req.query.year)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+
+  else if (req.query.visibility && req.query.uc) {
+    Recurso.listarVisibilityUc(req.query.visibility,req.query.uc)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+
+  else if (req.query.type && req.query.uc) {
+    Recurso.listarTypeUc(req.query.type,req.query.uc)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+
+  else if (req.query.visibility && req.query.type) {
+    Recurso.listarVisibilityType(req.query.visibility,req.query.type)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+
   else if (req.query.uc) {
-    Recurso.listarUcYear(req.query.uc)
+    Recurso.listarUc(req.query.uc)
       .then(data => res.jsonp(data))
       .catch(error => res.status(500).jsonp(error))
   }
   else if (req.query.year) {
-    Recurso.listarUcYear(req.query.year)
+    Recurso.listarYear(req.query.year)
       .then(data => res.jsonp(data))
       .catch(error => res.status(500).jsonp(error))
   }
   else if (req.query.type) {
-    Recurso.listarUcYear(req.query.type)
+    Recurso.listarType(req.query.type)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
+  }
+
+  else if (req.query.visibility) {
+    Recurso.listarVisibility(req.query.visibility)
       .then(data => res.jsonp(data))
       .catch(error => res.status(500).jsonp(error))
   }

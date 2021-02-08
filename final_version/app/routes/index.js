@@ -18,9 +18,9 @@ router.get('/index', function(req, res) {
 
 router.get('/repositorio', function(req, res) {
   console.log(' req url ' + req.url +' Info do pedido req.body: '+ JSON.stringify(req.body));
-  axios.get('http://localhost:8001/recursos?token=' + req.cookies.token)
-  .then(dados => res.render('listaRecursos', {lista: dados.data}))
-  .catch(e => res.render('error', {error: e}))
+  axios.get('http://localhost:8001/recursos?visibility=publico&token=' + req.cookies.token)
+    .then(dados => res.render('listaRecursos', {lista: dados.data}))
+    .catch(e => res.render('error', {error: e}))
 })
 
 

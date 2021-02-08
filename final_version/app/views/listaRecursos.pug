@@ -25,7 +25,7 @@ block content
 
     .w3-container.w3-boarder.w3-dark-grey
         h3 Filtrar
-        form.w3.container(action='/recursos' method='GET', enctype='text')
+        form.w3.container(action='/repositorio' method='GET', enctype='text')
             label.w3-bold Tipo
             select.w3-input.w3-border(name="type")
                 option(value="livro") Livro
@@ -90,7 +90,7 @@ block content
                     td.w3-center
                         a(href="/recursos/download/"+r.downloadName) Download
                         a(href="/recursos/"+r._id) Ver
-                                //button.w3-button.w3-teal(onclick="verRecurso('" + r._id + "')" style="margin-right: 5%") Ver Informação
+                              
     .w3-container.w3-dark-grey.w3-center
       p
       a.w3-margin(href="/home") Voltar a homepage
