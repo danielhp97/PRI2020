@@ -1,41 +1,69 @@
 extends layout
 
 block content
-  nav.navbar.navbar-expand-lg.navbar-dark.w3-dark-grey
-    a.navbar-brand(href='/home') Feed/Home
-    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-        span.navbar-toggler-icon
-    .collapse.navbar-collapse(id='navbarSupportedContent')
-        ul.navbar-nav.mr-auto
-            li.nav-item.active
-                a.nav-link(href='/repositorio') Repositório
-            li.nav-item
-                a.nav-link(href='/recursosprivados') Recursos Privados
-        ul.navbar-nav.mr-auto
-            li.nav-item.active
-                a.nav-link(href='/index') VIEWS/ROTAS
+    nav.navbar.navbar-expand-lg.navbar-dark.w3-dark-grey
+        a.navbar-brand(href='/home') Feed/Home
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        .collapse.navbar-collapse(id='navbarSupportedContent')
+            ul.navbar-nav.mr-auto
+                li.nav-item.active
+                    a.nav-link(href='/repositorio') Repositório
+                li.nav-item
+                    a.nav-link(href='/recursosprivados') Recursos Privados
+            ul.navbar-nav.mr-auto
+                li.nav-item.active
+                    a.nav-link(href='/index') VIEWS/ROTAS
 
-        ul.navbar-nav.float-right
-            li.nav-item
-                a.nav-link(href='/logout') Logout
-            li.nav-item
-                a.nav-link(href='/conta') Conta
-            li.nav-item
-                a.nav-link(href='/admin') Admin
+            ul.navbar-nav.float-right
+                li.nav-item
+                    a.nav-link(href='/logout') Logout
+                li.nav-item
+                    a.nav-link(href='/conta') Conta
+                li.nav-item
+                    a.nav-link(href='/admin') Admin
 
-    
+    .w3-container.w3-boarder.w3-dark-grey.w3-margin-top
+        p    
+            .w3-center
+                a(href="/recursos/upload") Adicionar Recurso
+        p
 
-  .w3-container.w3-light-grey.w3-margin.w3-border
-      p
-        a.w3-margin(href="/recursos/#{lista.id}") Lista dos teus Recursos
-      p
-  .w3-container.w3-light-grey.w3-margin.w3-boarder
-      p     
-        a.w3-margin(href="/recursos/upload") Novo Recurso
-      p
+    .w3-container.w3-margin
+        table.w3-table-all
+            tr
+                // th ID
+                th Autor: lista.author
+                th Titulo
+                th Subtítulo
+                th Descrição
+                th Tipo
+                th Ano
+                th UC
+                th Visibilidade
+                th Data Criação
+                th Rank
+                th Operações
+            each r in lista
+                tr
+                    // td= r._id
+                    td= r.author
+                    td= r.title
+                    td= r.subtitle
+                    td= r.desc
+                    td= r.type
+                    td= r.year
+                    td= r.uc
+                    td= r.visibility
+                    td= r.dateCreation
+                    td= r.rank
+                    td
+                        a(href="/recursos/"+r._id) Ver 
+                        a(href="/recursos/download/"+r.downloadName) Download 
+                        a(href="/recursos/"+r._id) Editar
+                        a(href="/recursos/"+r._id) Apagar
+                        
+    .w3-container.w3-boarder.w3-dark-grey
+        p    
 
-
-  .w3-container.w3-gray.w3-center
-    p
-    a.w3-margin(href="/home") Voltar a homepage
-    p
+        p
