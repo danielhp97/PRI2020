@@ -26,6 +26,18 @@ block content
           p dateCreation : #{p.dateCreation}
           p body : #{p.body}
           p author : #{p.author}
+          p Apagar Post
+    .w3-container.w3-boarder.w3-dark-grey
+      Acrescentar post:
+      form.w3.container(action='/postes/add' method='POST', enctype='text')
+          label.w3-bold Titulo
+          select.w3-input.w3-border(name="title")
+          p
+          label.w3-bold Body
+          select.w3-input.w3-border(name="body")
+
+          button.w3-button.w3-block.w3-margin-top.w3-margin-bottom.w3-gray(type="submit") Filtrar
+
 
     footer
         .w3-container.w3-dark-grey.w3-center
