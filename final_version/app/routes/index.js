@@ -74,16 +74,18 @@ router.post('/login', function(req, res) {
         secure: false, // set to true if your using https
         httpOnly: true
       });
-      res.redirect('/home')
+      res.redirect('/timeupdate')
     })
     .catch(e => res.render('login-error', {message: 'Credenciais Inválidas', error: e}))
 });
 
-router.get('/logout', function(req, res) {
-  axios.get('http://localhost:8002/users/logout')
-    .then(res.redirect('/'))
-    .catch(e => res.send(e))
-});
+router.get('/timeupdate', function(req,res){
+  var userID = jwt_decode(req.cookies.token).id;
+  var dateLastAcess = new Date(Date.now())
+  axios.put('http://localhost:8001/users/lastacess/'+userID+'?token=' + req.cookies.token, dateLastAcess)
+    .then(res.redirect('/home'))
+    .catch(e => res.render('error', {error: e}))
+})
 
 
 router.get('/recursos/upload', function(req,res) {

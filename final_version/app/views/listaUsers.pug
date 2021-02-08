@@ -25,26 +25,27 @@ block content
             th Name
             th Username
             th Email
-            th Password
+            // th Password
             th Filiação
             th Nivel
             th Data Registo
             th Data Ultimo Acesso
+            th Operações
         each u in lista
             tr
                 td= u._id
                 td= u.name
                 td= u.username
                 td= u.email
-                td= u.password
+                // td= u.password
                 td= u.filiation
                 td= u.level
                 td= u.dateRegister
                 td= u.dateLastAcess
                 td.w3-center
-                  a(href="/users/apagar/"+u._id) Apagar
-                  td.w3-center
-                    a(href="/editar/users/"+u._id) Modificar
+                  a(href="/users/apagar/"+u._id) Apagar /
+
+                  a(href="/editar/users/"+u._id) Modificar
     .w3-card-2
     .w3-container.w3-dark-grey.w3-center
       p

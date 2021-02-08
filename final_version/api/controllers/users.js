@@ -48,3 +48,7 @@ module.exports.alterar = function(u){
     return UserL.findByIdAndUpdate({_id: u._id}, u, {new: true})
 }
 
+module.exports.alterarLastAcess = function(u){
+    return UserL.findByIdAndUpdate({_id: u._id}, u.dateLastAcess)
+}
+
