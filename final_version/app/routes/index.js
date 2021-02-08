@@ -46,6 +46,15 @@ router.get('/index', function(req, res) {
   res.render('index');
 });
 
+router.get('/editar/recursos/:\id', function(req, res) {
+  res.render('editarRecurso',{id_user: req.params.id})
+});
+
+router.get('/editar/users/:id', function(req, res) {
+  console.log(req.params.id);
+  res.render('editarUser',{id_user: req.params.id})
+});
+
 
 //get pag registo
 router.get('/registo', function(req, res) {

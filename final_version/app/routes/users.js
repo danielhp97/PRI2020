@@ -43,7 +43,8 @@ function(req, res, next) {
   if (dados != 'admin') res.status(403).send('Access denied.')
   next()
 }, function(req, res) {
-  if(req.query) {
+  console.log(Object.keys(req.query).length)
+  if(Object.keys(req.query).length > 1) {
     axios.get('http://localhost:8001/users' + req.url +'&token=' + req.cookies.token)
       .then(dados => res.render('listaUsers', {lista: dados.data}))
       .catch(e => res.render('error', {error: e}))
@@ -75,38 +76,44 @@ function(req, res, next) {
 // pagina individual do user ( não tá funcional!)
 router.get('/detalhe', (req, res) => {
     var user_id = jwt_decode(req.cookies.token).id
-    console.log(user_id);
     axios.get('http://localhost:8001/users/detalhe/' + user_id + '?token=' + req.cookies.token)
       .then(dados => res.render('userDetalhado', {lista: dados.data}))
       .catch(e => res.render('error', {error: e}))
 })
 
-/*
+
 //apagar user
-router.delete('/apagar/:idUser',function(req, res, next) {
- var dados = jwt_decode(req.cookies.token).level;
- var user_id = jwt_decode(req.cookies.token).id;
- console.log(req.params.idUser)
- if (dados != 'admin' ||  (dados != 'admin' && user_id != req.params.idUser)) res.status(403).send('Access denied.')
- next()
-}, function(req, res) {
-  axios.delete('http://localhost:8001/users/' + req.params.idUser + '?token=' + req.cookie.token)
-    .then(res.redirect('/admin'))
-    .catch(e => res.render('error', {error: e}))
+router.get('/apagar/:idUser', function(req, res) {
+  var cookie_id = jwt_decode(req.cookies.token).id;
+  var level = jwt_decode(req.cookies.token).level;
+  if( level === 'admin' || cookie_id === req.params.idUser) {
+    axios.delete('http://localhost:8001/users/' + req.params.idUser + '?token=' + req.cookies.token)
+      .then(res.redirect('/users/'))
+      .catch(e => res.render('error', {error: e}))
+  } else {
+    res.send('Access Denied')
+  }
 })
 
 
 //alterar user (put request)
-router.put('/alterar/:idUser',function(req, res, next) {
- var dados = jwt_decode(req.cookies.token).level;
- var user_id = jwt_decode(req.cookies.token).id;
- console.log(req.params.idUser)
- if (dados != 'admin' ||  (dados != 'admin' && user_id != req.params.idUser)) res.status(403).send('Access denied.')
- next()
-}, function (req, res) {
-  axios.put('http://localhost:8001/users/' + req.params.idUser + '?token=' + req.cookie.token)
-    .then(res.redirect('/admin'))
-    .catch(e => res.render('error', {error: e}))
+router.get('/modificar/:idUser',function(req, res, next) {
+  var cookie_id = jwt_decode(req.cookies.token).id;
+  var level = jwt_decode(req.cookies.token).level;
+  var put_data = {
+    _id: req.params.idUser,
+    name: req.query.name,
+    username: req.query.username,
+    email: req.query.email,
+    password: req.query.password,
+    filiation: req.query.filiation,
+    level: req.query.level
+  }
+  if( level === 'admin' || cookie_id === req.params.idUser) {
+    axios.put('http://localhost:8001/users/' + put_data + '?token=' + req.cookies.token)
+      .then(res.redirect('/users/'))
+      .catch(e => res.render('error', {error: e}))
+  }
 })
-*/
+
 module.exports = router;

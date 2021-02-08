@@ -4,7 +4,7 @@ block content
   .w3-container.w3-margin.w3-border.w3-ligh-grey
     .w3-container.w3-ligh-grey
       h3 Criar Recurso
-      form.w3.container(action='/recursos/inserir' method='POST', enctype='multipart/form-data')
+      form.w3.container(action="/users/modificar/"+id_user method='PUT', enctype='multipart/form-data')
         p
         label.w3-bold Name
         input.w3-input.w3-border(type="text", name="name")
@@ -28,5 +28,5 @@ block content
 
     .w3-container.w3-dark-grey.w3-center
       p
-      a.w3-margin(href="/home") Voltar a homepage
+      a.w3-margin(href="/") Voltar a homepage
       p
