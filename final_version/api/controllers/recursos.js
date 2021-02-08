@@ -8,7 +8,6 @@ module.exports.listar = () => {
         .find()
         .exec()
 }
-
 //listar com contraints
 
 module.exports.listarTypeUcYearVisibility = (t,u,y,v) => {
@@ -72,7 +71,7 @@ module.exports.listarTypeUc = (t,u) => {
         .exec()
 }
 
-module.exports.listar = (t,y) => {
+module.exports.listarTypeYear = (t,y) => {
     return Recurso
         .find({type: t, year:y})
         .exec()

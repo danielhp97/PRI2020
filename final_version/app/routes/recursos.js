@@ -36,8 +36,9 @@ var upload = multer({dest: './public/uploads/',
 router.get('/', function(req, res) {
   console.log('Req query' + req.query)
   console.log('Req url' + req.url)
+  console.log(Object.keys(req.query).length)
 
-  if(Object.keys(req.query).length > 1){                  //&visibility=public
+  if(Object.keys(req.query).length > 1){
     axios.get('http://localhost:8001/recursos' + req.url +'&token=' + req.cookies.token)
       .then(dados => res.render('listaRecursosAdmin', {lista: dados.data}))
       .catch(e => res.render('error', {error: e}))

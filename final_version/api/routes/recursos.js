@@ -102,8 +102,8 @@ router.get('/', (req, res) => {
   else {
     console.log('Chegou aqui')
     Recurso.listar()
-      .then(dados => res.status(200).jsonp(dados))
-      .catch(e => res.status(500).jsonp({error: e}))
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error))
   }
 })
 

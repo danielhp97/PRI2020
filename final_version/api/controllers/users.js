@@ -2,14 +2,12 @@
 
 var UserL = require('../models/users')
 
-// Devolve a lista de Tarefas
+// Devolve a lista
 module.exports.listar = () => {
     return UserL
         .find()
         .exec()
 }
-
-
 //listar com contraints
 
 module.exports.listarFiliationLevel = (f,l) => {
