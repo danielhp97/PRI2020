@@ -18,16 +18,18 @@ block content
                 li.nav-item
                     a.nav-link(href='/users/manage') Admin
 
-    .w3-container.w3-boarder.w3-dark-grey
-      Posts mais Recentes deste Recurso
-      each p in lista
-        .w3-container.w3-boarder.w3-white
-          p Title : #{p.title}
-          p dateCreation : #{p.dateCreation}
-          p body : #{p.body}
-          p author : #{p.author}
-          p
-          a(href="/postes/apagar/"+rec_id+"/"+ user_id + "/" +p._id) Apagar Post
+
+    .w3-container.w3-border-black
+            each p in lista
+                .w3-container.w3-bottombar.w3-border-black.w3-center.w3-padding
+                    .w3-container
+                        b #{p.title} - #{p.dateCreation}
+                        p #{p.body}
+                        //author name
+                        i #{p.author}
+                        a(href='/recursos/'+p.resource_id) - Ver Recurso
+
+
     .w3-container.w3-boarder.w3-dark-grey
       Acrescentar post:
       form.w3.container(action='/postes/criar/'+rec_id method='POST', enctype='text')
@@ -40,6 +42,7 @@ block content
         button.w3-button.w3-block.w3-margin-top.w3-margin-bottom.w3-gray(type="submit") Submit
 
 
+    .w3-container.w3-display-bottommiddle
     footer
         .w3-container.w3-dark-grey.w3-center
           p
