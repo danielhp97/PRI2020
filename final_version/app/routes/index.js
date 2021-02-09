@@ -14,10 +14,18 @@ router.get('/home', function(req, res) {
 });
 
 router.get('/repositorio', function(req, res) {
-  console.log('req url'+req.url)
-  axios.get('http://localhost:8001/recursos' + req.url + '&visibility0' +'&token=' + req.cookies.token)
-  .then(dados => res.render('listaRecursos', {lista: dados.data}))
-  .catch(e => res.render('error', {error: e}))
+  console.log(Object.keys(req.query).length)
+
+  var split = req.url.split("?")[1]
+  if(Object.keys(req.query).length > 1){
+    axios.get('http://localhost:8001/recursos/?' + split +'&token=' + req.cookies.token + '&visibility=publico')
+      .then(dados => res.render('listaRecursos', {lista: dados.data}))
+      .catch(e => res.render('error', {error: e}))
+  }else{                                                  //&visibility=public
+    axios.get('http://localhost:8001/recursos/?token=' + req.cookies.token + '&visibility=publico')
+    .then(dados => res.render('listaRecursos', {lista: dados.data}))
+    .catch(e => res.render('error', {error: e}))
+  }
 })
 
 router.get('/recursosprivados',
@@ -37,7 +45,7 @@ router.get('/recursosprivados',
 
 
 
-router.get('/editar/recursos/:id', 
+router.get('/editar/recursos/:id',
  function(req, res) {
   res.render('editarRecurso',{id_rec: req.params.id})
 });
