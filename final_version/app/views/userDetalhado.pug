@@ -8,9 +8,9 @@ block content
     .collapse.navbar-collapse(id='navbarSupportedContent')
         ul.navbar-nav.mr-auto
             li.nav-item.active
-                a.nav-link(href='/recursos/') Repositório
+                a.nav-link(href='/repositorio') Repositório
             li.nav-item
-                a.nav-link(href='/produtor') Meus Recursos
+                a.nav-link(href='/recursosprivados') Meus Recursos
 
 
         ul.navbar-nav.float-right
@@ -19,9 +19,12 @@ block content
             li.nav-item
                 a.nav-link(href='/users/manage') Admin
 
-  .w3-container.w3-center
-    h1 Detalhes do User Atual
-  .w3-container.w3-margin
+  .w3-container.w3-boarder.w3-dark-grey.w3-margin-top
+    .w3-container.w3-left
+      h1 Actualizar Dados de #{lista.name}
+
+  .w3-container.w3-boarder.w3-grey.w3-margin-top
+      .w3-container.w3-margin-left
         tr
             p Name: #{lista.name}
             p Username:#{lista.username}
@@ -32,27 +35,29 @@ block content
             //p Last Access Date: #{lista.dateLastAcess}
 
   .w3-container.w3-ligh-grey
-      h3 Alterar Informações
-      form.w3.container(action="/users/modificar/"+lista._id method='PUT', enctype='multipart/form-data')
-        p
-        label.w3-bold Name
-        input.w3-input.w3-border(type="text", name="name")
-        p
-        label.w3-bold Username
-        input.w3-input.w3-border(type="text", name="username")
-        p
-        label.w3-bold Email
-        input.w3-input.w3-border(type="text", name="email")
-        p
-        label.w3-bold Password
-        input.w3-input.w3-border(type="text", name="password")
-        p
-        label.w3-bold Filiation
-          select.w3-input.w3-border(name="filiation")
-            option(value="estudante") Estudante
-            option(value="professor") Professor
-        p
-        button.btn.btn-primary(type='submit') Submit
+    h3 Alterar Informações
+  
+  .w3-container.w3-grey
+    form.w3.container(action="/users/modificar/"+lista._id method='PUT', enctype='multipart/form-data')
+      p
+      label.w3-bold Name
+      input.w3-input.w3-border(type="text", name="name")
+      p
+      label.w3-bold Username
+      input.w3-input.w3-border(type="text", name="username")
+      p
+      label.w3-bold Email
+      input.w3-input.w3-border(type="text", name="email")
+      p
+      label.w3-bold Password
+      input.w3-input.w3-border(type="text", name="password")
+      p
+      label.w3-bold Filiation
+        select.w3-input.w3-border(name="filiation")
+          option(value="estudante") Estudante
+          option(value="professor") Professor
+      p
+      button.btn.btn-primary(type='submit') Submit
 
 
 
