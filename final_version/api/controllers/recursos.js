@@ -30,7 +30,7 @@ module.exports.listarTypeYearVisibility = (t,y,v) => {
 
 module.exports.listarYearUcVisibility = (t,y,v) => {
     return Recurso
-        .find({year: y, uc: u, visibility: v})
+        .find({type: t, year: y, visibility: v})
         .exec()
 }
 
@@ -71,11 +71,6 @@ module.exports.listarTypeUc = (t,u) => {
         .exec()
 }
 
-module.exports.listarTypeYear = (t,y) => {
-    return Recurso
-        .find({type: t, year:y})
-        .exec()
-}
 
 
 module.exports.listarVisibilityType = (v, t) => {
