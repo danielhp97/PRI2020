@@ -12,12 +12,19 @@ A plataforma permite ao **admin gerir os utilizadores**. Cada utilizador pode ge
 
 
 Para este projecto **utilizamos**:
+        
         - Uma **MongoDB no Atlas**, em servidores próprios;
         - 3 servidores: **Autenticação**, uma **API de Dados** e um para a **APP**.
         - Para a autenticação, usamos um **sistema de Tokens**.
         
 **Credenciais de Admin:**
+
 - username: admin
 - password: admin
 
 Além disso **é possível "Registar" utilizadores**, com menos permissões.
+
+
+Para inicializar é necessário correr *npm install* em cada directoria (**app**,**auth**,**api**).
+
+Depois, é só correr **cada servidor** com *npm start* e aceder através de um browser na porta **http://localhost:8003**.
