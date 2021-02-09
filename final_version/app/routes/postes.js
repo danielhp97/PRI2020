@@ -13,7 +13,7 @@ var jwt_decode = require('jwt-decode')
 
 
 
-'http://localhost:8001/recursos?token='
+
 
 router.get('/', function(req,res){
   axios.get('http://localhost:8001/postes?token=' + req.cookies.token)

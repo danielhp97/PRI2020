@@ -100,7 +100,6 @@ router.get('/', (req, res) => {
       .catch(error => res.status(500).jsonp(error))
   }
   else {
-    console.log('Chegou aqui')
     Recurso.listar()
       .then(data => res.jsonp(data))
       .catch(error => res.status(500).jsonp(error))
