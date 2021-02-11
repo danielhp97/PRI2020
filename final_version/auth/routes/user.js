@@ -5,19 +5,6 @@ var passport = require('passport');
 var jwt = require('jsonwebtoken');
 
 
-router.get('/logout', function(req, res){
-  req.logout();
-  req.cookie.token.destroy(function (err) {
-    if (!err) {
-      console.log('Token destruida: ', err)
-        res.status(200);
-        //res.redirect('/');
-    } else {
-        e => res.status(500).jsonp({error: e})
-    }
-  });
-});
-
 router.get('/', function(req,res){
   User.listar()
     .then(dados => res.status(200).jsonp({dados:dados}))
