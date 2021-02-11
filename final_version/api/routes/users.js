@@ -7,6 +7,15 @@ const User = require('../controllers/users');
 //let libxml = new Libxml();
 
 // ------------------------------------------------ user
+
+router.get('/:id', function(req, res) {
+  console.log('Consultar o utilizardor com id'+req.params.id)
+  User.consultar(req.params.id)
+    .then(dados => res.status(200).jsonp(dados))
+    .catch(e => res.status(500).jsonp({error: e}))
+});
+
+
 router.get('/', (req, res) => {
 
   if (req.query.filiation && req.query.level) {
@@ -38,6 +47,7 @@ router.get('/detalhe/:id', function(req, res) {
     .then(dados => res.status(200).jsonp(dados))
     .catch(e => res.status(500).jsonp({error: e}))
 });
+
 
 router.put('/', function(req, res){
   var url = req.url.split("/")[1]

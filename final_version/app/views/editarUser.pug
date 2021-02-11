@@ -24,21 +24,27 @@ block content
       form.w3.container(action="/users/modificar/"+id_user method='PUT', enctype='multipart/form-data')
         p
         label.w3-bold Name
-        input.w3-input.w3-border(type="text", name="name")
+        input.w3-input.w3-border(type="text", name="name", value=`${user.name}`)
         p
         label.w3-bold Username
-        input.w3-input.w3-border(type="text", name="username")
+        input.w3-input.w3-border(type="text", name="username", value=`${user.username}`)
         p
         label.w3-bold Email
-        input.w3-input.w3-border(type="text", name="email")
+        input.w3-input.w3-border(type="text", name="email", value=`${user.email}`)
         p
         label.w3-bold Password
-        input.w3-input.w3-border(type="text", name="password")
+        input.w3-input.w3-border(type="text", name="password", , value=`${user.password}`)
         p
         label.w3-bold Filiation
           select.w3-input.w3-border(name="filiation")
             option(value="estudante") Estudante
             option(value="professor") Professor
+        p
+        label.w3-bold Tipo
+          select.w3-input.w3-border(name="type")
+            option(value="admin") Administrador
+            option(value="produtor") Produtor
+            option(value="consumidor") User Padrão
         p
         button.btn.btn-primary(type='submit') Submit
 

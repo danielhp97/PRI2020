@@ -20,17 +20,19 @@ block content
 
   .w3-container.w3-margin.w3-border.w3-ligh-grey
     .w3-container.w3-ligh-grey
-      h3 Criar Recurso
-      form.w3.container(action='/recursos/modificar/'+id_rec method='PUT', enctype='multipart/form-data')
+      h3 Editar Recurso
+      form.w3.container(action='/recursos/modificar/'+recurso._id method='PUT', enctype='multipart/form-data')
+        input(type='hidden', name='author', value=`${recurso.author}`)
         p
         label.w3-bold Title
-        input.w3-input.w3-border(type="text", name="title")
+        input.w3-input.w3-border(type="text", name="title", value=`${recurso.title}`)
         p
         label.w3-bold Subtitle
-        input.w3-input.w3-border(type="text", name="subtitle")
+        input.w3-input.w3-border(type="text", name="subtitle", value=`${recurso.subtitle}`)
         p
+
         label.w3-bold Descrição
-        input.w3-input.w3-border(type="text", name="desc")
+        input.w3-input.w3-border(type="text", name="desc", value=`${recurso.desc}`)
         p
         label.w3-bold Tipo
           select.w3-input.w3-border(name="type")
@@ -41,29 +43,29 @@ block content
             option(value="relatorio") Relatório
             option(value="trabalho") Trabalho
             option(value="tese") Tese
-            option(value="outro" selected) Outro
+            option(value="outro") Outro
         p
         label.w3-bold Unidade Curricular
-          select.w3-input.w3-border(name="uc")
+          select.w3-input.w3-border(name="uc", , value=`${recurso.uc}`)
             option(value="pi") Programação Imperativa
             option(value="anal") Análise
             option(value="log") Lógica
             option(value="pri") Processamento e Representação de Informação
             option(value="sd") Sistemas Distribuidos
             option(value="pei") Projeto Engenharia Informática
-            option(value="outro" selected) Outro
+            option(value="outro") Outro
         p
         label.w3-bold Ano
-          select.w3-input.w3-border(name="year")
+          select.w3-input.w3-border(name="year", value=`${recurso.year}`)
             option(value="1ano") 1ºAno
             option(value="2ano") 2ºAno
             option(value="3ano") 3ºAno
             option(value="4ano") 4ºAno
             option(value="5ano") 5ºAno
-            option(value="outro" selected) Outro
+            option(value="outro") Outro
         p
         label.w3-bold Visiblidade
-          select.w3-input.w3-border(name="visibility")
+          select.w3-input.w3-border(name="visibility", value=`${recurso.visibility}`)
             option(value="publico" selected) Público
             option(value="privado") Privado
         p

@@ -36,6 +36,10 @@ block content
                             p Data de criação: #{p.dateCreation}
                         .w3-container.w3-right
                             a(href='/recursos/'+p.resource_id) - Ver Recurso
+                        .w3-container
+                            a(href="/posts/editar/"+p._id) Editar -
+                            a(href="/posts/apagar/"+p._id) Apagar -
+
 
     footer
         .w3-container.w3-gray.w3-center

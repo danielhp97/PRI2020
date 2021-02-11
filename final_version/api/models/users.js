@@ -8,12 +8,7 @@ var userSchema = new mongoose.Schema({
     filiation: String, //estudante, professor
     level: String, //admin, producer, consumer
     dateRegister: String,
-    dateLastAcess: String,
-
-    recursos: [{
-        //mongoose.ObjectId
-        type: mongoose.Schema.Types.ObjectId, ref: 'recursos'
-    }],
+    dateLastAcess: String
 })
 
 module.exports = mongoose.model('users', userSchema)

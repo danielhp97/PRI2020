@@ -13,26 +13,19 @@ var jwt_decode = require('jwt-decode')
 
 
 
-
-
-router.get('/', function(req,res){
-  axios.get('http://localhost:8001/postes?token=' + req.cookies.token)
-    .then(dados => res.render('home', {lista: dados.data}))
-    .catch(e => res.render('error', {error: e}))
-})
-
 router.get('/:idRec', function(req,res){
   var idRec = req.params.idRec
   var idUser = jwt_decode(req.cookies.token).id
   axios.get('http://localhost:8001/postes/' + idRec + '?token=' + req.cookies.token)
-    .then(dados => res.render('postesRecurso', {lista: dados.data, rec_id: idRec,user_id: idUser}))
+    .then(dados => res.render('postesRecurso', {lista: dados.data, rec_id: idRec, user_id: idUser}))
     .catch(e => res.render('error', {error: e}))
 })
 
 router.post('/criar/:idRec', function(req, res){
   var recurso = req.params.idRec
-  console.log(recurso)
+  console.log('->' + jwt_decode(req.cookies.token).username)
   var pst = {
+      authoruname: jwt_decode(req.cookies.token).username,
       title: req.body.title,
       body: req.body.body,
       author: jwt_decode(req.cookies.token).id,
@@ -46,7 +39,6 @@ router.post('/criar/:idRec', function(req, res){
 
 
 
-//apagar user
 router.get('/apagar/:idRec/:idUser/:idPoste', function(req, res) {
   var recurso = req.params.idRec
   var cookie_id = jwt_decode(req.cookies.token).id;

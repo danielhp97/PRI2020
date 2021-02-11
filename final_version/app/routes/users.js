@@ -69,8 +69,8 @@ function(req, res, next) {
 // pagina individual do user
 router.get('/detalhe', (req, res) => {
     var user_id = jwt_decode(req.cookies.token).id
-    axios.get('http://localhost:8001/users/detalhe/' + user_id + '?token=' + req.cookies.token)
-      .then(dados => res.render('userDetalhado', {lista: dados.data}))
+    axios.get('http://localhost:8001/users/' + user_id + '?token=' + req.cookies.token)
+      .then(dados => res.render('userDetalhado', {user: dados.data}))
       .catch(e => res.render('error', {error: e}))
 })
 
@@ -96,6 +96,8 @@ router.get('/modificar/:idUser',function(req, res, next) {
   console.log(req.params.idUser);
   console.log(req.query.name);
   console.log(req.query.email);
+  console.log(req.query.type);
+
   var put_data = {
     _id: req.params.idUser,
     name: req.query.name,
@@ -103,6 +105,7 @@ router.get('/modificar/:idUser',function(req, res, next) {
     email: req.query.email,
     password: req.query.password,
     filiation: req.query.filiation,
+    type: req.query.type,
     level: req.query.level
   }
   if( level === 'admin' || cookie_id === req.params.idUser) {

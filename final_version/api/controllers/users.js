@@ -28,7 +28,6 @@ module.exports.listarLevel = (l) => {
         .exec()
 }
 
-
 module.exports.consultar = id => {
     return UserL
         .findOne({_id: id})

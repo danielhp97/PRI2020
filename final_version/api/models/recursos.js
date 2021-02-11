@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
 
 var recursoSchema = new mongoose.Schema({
     author: mongoose.Schema.Types.ObjectId,
+    authoruname: String,
     title: String,
     subtitle: String,
     desc: String,
@@ -11,7 +12,6 @@ var recursoSchema = new mongoose.Schema({
     visibility: String,
     rank: String,
     downloadName: String
-    //author_name: String
 })
 
 

@@ -8,7 +8,8 @@ var admZip = require('adm-zip')
 const Libxml = require('node-libxml');
 let libxml = new Libxml();
 
-var multer = require('multer')
+var multer = require('multer');
+const { Console } = require('console');
 
 var storage = multer.diskStorage({
     destination: function (request, file, callback) {
@@ -89,8 +90,11 @@ router.post('/inserir', upload.single('myFile'),function(req, res, next) {
       //       }
       //       const json = JSON.stringify(result);
 
+      console.log('Username: '+ jwt_decode(req.cookies.token).username)
+
             var rcs = {
                 author: jwt_decode(req.cookies.token).id,
+                authoruname: jwt_decode(req.cookies.token).username,
                 title: req.body.title,
                 subtitle: req.body.subtitle,
                 desc : req.body.desc,
@@ -101,6 +105,8 @@ router.post('/inserir', upload.single('myFile'),function(req, res, next) {
                 dateCreation: new Date().toISOString().slice(0,10),
                 downloadName: req.file.filename
             };
+            console.log('++ '+rcs.authoruname);
+
 
             //var json_metadata = JSON.stringify(result.recurso)
             axios.post('http://localhost:8001/recursos?token=' + req.cookies.token, rcs)
@@ -135,7 +141,7 @@ router.get('/apagar/:idRec', function(req, res) {
   var level = jwt_decode(req.cookies.token).level;
   if( level === 'admin' || cookie_id === req.params.idUser) {
     axios.delete('http://localhost:8001/recursos/' + req.params.idRec + '?token=' + req.cookies.token)
-      .then(res.redirect('/home'))
+      .then(res.redirect('/recursosprivados'))
       .catch(e => res.render('error', {error: e}))
   } else {
     res.send('Access Denied')
@@ -145,6 +151,9 @@ router.get('/apagar/:idRec', function(req, res) {
 
 //alterar user (put request)
 router.get('/modificar/:idRec',function(req, res, next) {
+  console.log('Modificar recurso')
+  console.log('Recurso author ' + req.query.author)
+
   var cookie_id = jwt_decode(req.cookies.token).id;
   var level = jwt_decode(req.cookies.token).level;
   var put_data = {
@@ -155,8 +164,9 @@ router.get('/modificar/:idRec',function(req, res, next) {
     type: req.query.type,
     year: req.query.year,
     uc: req.query.uc,
+    visibility: req.query.visibility
   }
-  if( level === 'admin' || cookie_id === req.params.idUser) {
+  if( level === 'admin' || cookie_id === req.query.author) {
     axios.put('http://localhost:8001/recursos/?token=' + req.cookies.token, put_data)
       .then(res.redirect('/home'))
       .catch(e => res.render('error', {error: e}))

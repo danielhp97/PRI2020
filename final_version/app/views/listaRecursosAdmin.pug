@@ -59,8 +59,7 @@ block content
     .w3-container.w3-margin
         table.w3-table-all
             tr
-                // th ID
-                //th Autor: lista.author
+                th Autor Username
                 th Titulo
                 th Subtítulo
                 th Descrição
@@ -69,14 +68,12 @@ block content
                 th UC
                 th Visibilidade
                 th Data Criação
-                //th Rank
                 th Download
                 th Apagar
                 th Modificar
             each r in lista
                 tr
-                    // td= r._id
-                    //td= r.author
+                    td= r.authoruname
                     td= r.title
                     td= r.subtitle
                     td= r.desc
@@ -85,7 +82,6 @@ block content
                     td= r.uc
                     td= r.visibility
                     td= r.dateCreation
-                    //td= r.rank
                     td.w3-center
                         a(href="/recursos/download/"+r.downloadName) Download /
                         a(href="/recursos/"+r._id) Ver
