@@ -30,4 +30,4 @@ Para inicializar é necessário correr *npm install* em cada directoria (**app**
 Depois, é só correr **cada servidor** com *npm start* e aceder através de um browser na porta **http://localhost:8003**.
 
 
-Link da apresentação: https://meet.google.com/bwd-guoz-nwm
+Link da apresentação: https://docs.google.com/presentation/d/1LErtIaX76A5O2nDjQ0-8TAulsYulo7eSbRaISgtSqPk/edit?usp=sharing
