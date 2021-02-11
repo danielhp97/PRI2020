@@ -28,3 +28,6 @@ Além disso **é possível "Registar" utilizadores**, com menos permissões.
 Para inicializar é necessário correr *npm install* em cada directoria (**app**,**auth**,**api**).
 
 Depois, é só correr **cada servidor** com *npm start* e aceder através de um browser na porta **http://localhost:8003**.
+
+
+Link da apresentação: https://meet.google.com/bwd-guoz-nwm
